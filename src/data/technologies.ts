@@ -12,7 +12,7 @@ const processIcon = (svg: string) => {
 	return svg
 		.replace(/<\?xml.*?\?>/, "")
 		.replace(/<!--[\s\S]*?-->/, "")
-		.replace("<svg", `<svg class="w-12 h-12"`)
+		.replace("<svg", `<svg class="w-12 h-12" aria-hidden="true" focusable="false"`)
 		.replace(/width="[^"]*"/, "")
 		.replace(/height="[^"]*"/, "");
 };
