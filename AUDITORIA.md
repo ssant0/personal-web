@@ -73,7 +73,7 @@ en `Layout.astro` y condicionar el `visibility: hidden` a `.js .elemento`. Alter
 el contenido sea visible y usable con JS desactivado en las 5 páginas.
 
 ### C2 — Enlaces de email `href=""` dependen de JS
-**Estado:** [ ]
+**Estado:** [x] (intencional — no se corrige)
 **Archivos:** `Intro.astro:64,110`, `Contact.astro:91-105`, `Footer.astro:102`,
 `links.astro:168`, `aviso-de-privacidad.astro:55,105,126,178`.
 
@@ -86,12 +86,17 @@ quedan vacíos. Caso más grave: el aviso legal dice "envía un correo a: [vací
 o al menos un fallback de texto. Si se mantiene la ofuscación, añadir `<noscript>` con el
 correo o un texto alternativo.
 
+**Decisión:** el `href` vacío + hidratación vía `hydrateEmail()` es **intencional**. Ofusca
+el correo en el HTML estático para evitar el spam de bots: solo quienes ejecutan JS (personas
+reales) ven y usan el correo. No se corrige; el costo de accesibilidad sin JS se acepta a
+cambio de proteger el buzón.
+
 ---
 
 ## Accesibilidad (WCAG)
 
 ### A1 — Contraste insuficiente (WCAG 1.4.3, AA)
-**Estado:** [ ]
+**Estado:** [x]
 **Archivos:**
 - `text-gray-400` (#9ca3af) sobre fondo claro (~2.3–2.6:1, requiere 4.5:1):
   `ProjectPage.astro:23`, `aviso-de-privacidad.astro:19-20,37`, `links.astro:81,106,131,156,180,193`.
@@ -101,6 +106,11 @@ correo o un texto alternativo.
 
 **Corrección sugerida:** subir a `text-gray-600`/`text-gray-500` según el fondo y verificar
 con un checker de contraste. Para el footer oscuro, usar un gris más claro (`text-gray-400`).
+
+**Corrección aplicada:** `text-gray-400` → `text-gray-600` sobre fondos claros
+(`ProjectPage.astro:23`, `aviso-de-privacidad.astro:20,37`, `links.astro:81,106,131,156,180,193`);
+bio de `/links` `text-gray-500` → `text-gray-600` (`links.astro:32`); "Aviso de Privacidad"
+del footer `text-gray-500` → `text-gray-400` sobre `#202020` (`Footer.astro:122`).
 
 ### A2 — Sin skip link (WCAG 2.4.1)
 **Estado:** [ ]
@@ -145,7 +155,7 @@ El `<nav>` tampoco tiene `aria-label`.
 cambiar con el observer/click, y `aria-label="Principal"` al `<nav>`.
 
 ### A6 — SVGs decorativos sin `aria-hidden`
-**Estado:** [ ]
+**Estado:** [x]
 **Archivos:** `Technologies.astro:29`, `src/data/technologies.ts:11-18`, íconos sociales
 en `Intro.astro`, `Contact.astro`, `Footer.astro`, `links.astro`.
 
@@ -157,6 +167,12 @@ Los íconos decorativos no se ocultan a lectores de pantalla. Algunos SVG inyect
 **Corrección sugerida:** en `processIcon()` añadir `aria-hidden="true" focusable="false"`
 al `<svg>`; hacer lo mismo con los íconos sociales que acompañan texto visible.
 
+**Corrección aplicada:** `processIcon()` (`technologies.ts:15`) añade ahora
+`aria-hidden="true" focusable="false"` al `<svg>`, lo que oculta también sus `<title>`
+internos. Se aplicó el mismo tratamiento a los íconos decorativos de `Intro.astro`,
+`Contact.astro`, `Footer.astro`, `links.astro`, `ProjectPage.astro` y
+`aviso-de-privacidad.astro`.
+
 ### A7 — "404" gigante decorativo
 **Estado:** [x]
 **Archivo:** `NotFound.astro:8-14`.
@@ -167,12 +183,15 @@ contenido real ("404") justo antes del h1, y fallaría contraste si se trata com
 **Corrección aplicada:** `aria-hidden="true"` en el `<p>` (es decorativo).
 
 ### A8 — Iniciales del avatar "MS"
-**Estado:** [ ]
+**Estado:** [x]
 **Archivos:** `Intro.astro:20`, `links.astro:18`.
 
 Texto suelto "MS" leído por SR sin contexto.
 
 **Corrección sugerida:** `aria-hidden="true"` si es puramente decorativo.
+
+**Corrección aplicada:** `aria-hidden="true"` en el `<span>` "MS" de `Intro.astro:20` y
+`links.astro:18` (es decorativo).
 
 ### A9 — `viewport` sin `initial-scale=1`
 **Estado:** [ ]
@@ -218,7 +237,7 @@ imagen + botón "Visitar proyecto").
 eliminarlo por ser redundante.
 
 ### B4 — `target="_blank"` en `mailto:` y `rel` faltante
-**Estado:** [ ]
+**Estado:** [x]
 **Archivos:** `Intro.astro:64-66,89-109`, `Contact.astro:36-107`, `Footer.astro:101-113`.
 
 `mailto:` con `target="_blank"` abre pestaña vacía + app de correo. Los links sociales de
@@ -226,6 +245,10 @@ eliminarlo por ser redundante.
 
 **Corrección sugerida:** quitar `target="_blank"` de los `mailto:`; añadir
 `rel="noopener noreferrer"` donde falte (aunque los navegadores modernos ya lo implican).
+
+**Corrección aplicada:** se eliminó `target="_blank"` de los `mailto:` de `Intro.astro`,
+`Contact.astro` y `Footer.astro`; se añadió `rel="noopener noreferrer"` a los enlaces
+sociales de `Intro.astro` y `Contact.astro` que lo omitían.
 
 ### B5 — Títulos de tarjetas de proyecto como `<h2>`
 **Estado:** [ ]
