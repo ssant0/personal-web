@@ -16,3 +16,31 @@ html {
 .media-links a:hover svg {
 	fill: #3e8b7d;
 }
+
+/* Skip link — visible solo al recibir foco por teclado */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 60;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	background: #2d5d54;
+	color: #fff;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.skip-link:focus {
+	left: 0.75rem;
+	top: 0.75rem;
+}
+
+/* Deja libre la altura del nav sticky al saltar a una sección */
+#intro,
+#recent-projects,
+#about,
+#contact,
+#technologies {
+	scroll-margin-top: var(--nav-height, 5.5rem);
+}

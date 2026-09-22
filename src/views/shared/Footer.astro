@@ -138,11 +138,18 @@ const currentYear = new Date().getFullYear();
 
 	document.querySelectorAll<HTMLAnchorElement>("[data-scroll]").forEach((link) => {
 		link.addEventListener("click", (e) => {
+			// Respeta clic con modificadores (abrir en pestaña nueva, etc.)
+			if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+			if (link.dataset.scroll === "intro") {
+				e.preventDefault();
+				window.scrollTo({top: 0, behavior: "smooth"});
+				return;
+			}
 			const target = document.getElementById(link.dataset.scroll!);
 			if (!target) return;
 			e.preventDefault();
-			const top = link.dataset.scroll === "intro" ? 0 : target.offsetTop;
-			window.scrollTo({top, behavior: "smooth"});
+			target.scrollIntoView({behavior: "smooth", block: "start"});
 		});
 	});
 </script>
