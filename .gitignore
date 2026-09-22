@@ -3,6 +3,9 @@
 .vscode
 dist/
 
+# agent skills (installed locally)
+.agents/
+
 # dependencies
 node_modules/
 
