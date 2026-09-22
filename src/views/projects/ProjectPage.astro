@@ -15,7 +15,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	Astro.props;
 ---
 
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-28">
+<main id="main" tabindex="-1" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-28">
 
 	<!-- Back link -->
 	<a
@@ -61,6 +61,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 				class="project-img w-full h-auto block"
 			/>
 			<div
+				aria-hidden="true"
 				class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
         <span
 	        class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
@@ -158,12 +159,12 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 
 <style>
 	/* FOUC prevention — autoAlpha manages visibility+opacity together */
-	#project-eyebrow,
-	#project-title,
-	#project-techs,
-	#project-ctas,
-	#project-description p,
-	#project-description h2 {
+	:global(.js) #project-eyebrow,
+	:global(.js) #project-title,
+	:global(.js) #project-techs,
+	:global(.js) #project-ctas,
+	:global(.js) #project-description p,
+	:global(.js) #project-description h2 {
 		visibility: hidden;
 		will-change: transform;
 	}
@@ -177,12 +178,14 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 		filter: grayscale(15%) contrast(97%);
 	}
 
-	.project-img-wrapper:hover .project-img {
+	.project-img-wrapper:hover .project-img,
+	.project-img-wrapper a:focus-visible .project-img {
 		transform: scale(1.02);
 		filter: grayscale(0%) contrast(100%);
 	}
 
-	.project-img-wrapper:hover .img-overlay {
+	.project-img-wrapper:hover .img-overlay,
+	.project-img-wrapper a:focus-visible .img-overlay {
 		opacity: 1;
 	}
 

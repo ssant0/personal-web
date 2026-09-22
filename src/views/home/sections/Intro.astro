@@ -123,8 +123,9 @@ import {socialLinks} from "../../../data/socialLinks";
 				</svg>
 			</div>
 		</a>
-		<button
+		<a
 			id="btn-ver-proyectos"
+			href="#recent-projects"
 			class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center max-[660px]:px-5 cursor-pointer"
 		>
 			<span class="text-lg max-[660px]:text-base max-[382px]:text-sm">Ver proyectos</span>
@@ -134,17 +135,17 @@ import {socialLinks} from "../../../data/socialLinks";
 					      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
 				</svg>
 			</div>
-		</button>
+		</a>
 	</div>
 </div>
 
 <style>
-	.avatar-ring,
-	#intro-badges,
-	#intro h1,
-	#intro p,
-	.media-links,
-	#intro-ctas {
+	:global(.js) .avatar-ring,
+	:global(.js) #intro-badges,
+	:global(.js) #intro h1,
+	:global(.js) #intro p,
+	:global(.js) .media-links,
+	:global(.js) #intro-ctas {
 		visibility: hidden;
 		will-change: transform;
 	}
@@ -187,10 +188,11 @@ import {socialLinks} from "../../../data/socialLinks";
 	gsap.to(".media-links", {...baseTo, delay: 0.8});
 	gsap.to("#intro-ctas", {...baseTo, y: 0, delay: 1});
 
-	document.getElementById('btn-ver-proyectos')?.addEventListener('click', () => {
+	document.getElementById('btn-ver-proyectos')?.addEventListener('click', (e) => {
+		if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 		const target = document.getElementById('recent-projects');
-		if (target) {
-			window.scrollTo({top: target.offsetTop, behavior: 'smooth'});
-		}
+		if (!target) return;
+		e.preventDefault();
+		target.scrollIntoView({behavior: 'smooth', block: 'start'});
 	});
 </script>
