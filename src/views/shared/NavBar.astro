@@ -4,6 +4,7 @@
 
 <nav
 	id="navbar"
+	aria-label="Principal"
 	class="sticky top-0 w-full z-50 flex justify-center
 	py-3 px-16
 	max-[660px]:px-0 max-[660px]:py-0"
@@ -17,41 +18,54 @@
     transition-colors duration-300
     max-[660px]:w-full max-[660px]:justify-center max-[660px]:rounded-none max-[480px]:text-base"
 	>
-		<button
+		<a
+			href="#intro"
 			data-target="intro"
+			aria-current="location"
 			class="lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
       max-[382px]:px-2 max-[382px]:py-0.5
       w-34 max-[660px]:w-32 max-[480px]:w-28"
-		>Inicio</button>
+		>Inicio</a>
 
-		<button
+		<a
+			href="#recent-projects"
 			data-target="recent-projects"
 			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
       max-[382px]:px-2 max-[382px]:py-0.5
       w-34 max-[660px]:w-32 max-[480px]:w-28"
-		>Proyectos</button>
+		>Proyectos</a>
 
 		<!-- Oculto en mobile — sección accesible por scroll -->
-		<button
+		<a
+			href="#about"
 			data-target="about"
 			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
       max-[382px]:px-2 max-[382px]:py-0.5
       w-34 max-[660px]:hidden"
-		>Sobre mí</button>
+		>Sobre mí</a>
 
-		<button
+		<a
+			href="#contact"
 			data-target="contact"
 			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
       max-[382px]:px-2 max-[382px]:py-0.5
       w-34 max-[660px]:w-32 max-[480px]:w-28 text-center"
-		>Contacto</button>
+		>Contacto</a>
 	</div>
 </nav>
 
 <script>
 	import gsap from "gsap";
 
-	const links = document.querySelectorAll<HTMLButtonElement>(".lb");
+	const nav = document.getElementById("navbar");
+	const links = document.querySelectorAll<HTMLAnchorElement>(".lb");
+
+	// Expone la altura real del nav para que scroll-margin-top la respete
+	const setNavHeight = () => {
+		if (nav) document.documentElement.style.setProperty("--nav-height", `${nav.offsetHeight}px`);
+	};
+	setNavHeight();
+	window.addEventListener("resize", setNavHeight);
 
 	// Animación de entrada
 	links.forEach((link) => gsap.set(link, { scale: 0 }));
@@ -63,11 +77,20 @@
 		},
 	});
 
-	// Mapa sección → botón usando data-target
+	// Mapa sección → enlace usando data-target
 	const getSection = (id: string): HTMLElement | null =>
 		document.getElementById(id);
 
-	const sectionLinkMap = new Map<Element, HTMLButtonElement>();
+	const setActive = (link: HTMLAnchorElement) => {
+		links.forEach((l) => {
+			l.classList.remove("active");
+			l.removeAttribute("aria-current");
+		});
+		link.classList.add("active");
+		link.setAttribute("aria-current", "location");
+	};
+
+	const sectionLinkMap = new Map<Element, HTMLAnchorElement>();
 
 	links.forEach((link) => {
 		const targetId = link.dataset.target!;
@@ -76,7 +99,7 @@
 	});
 
 	// Observer — marca el link activo según la sección visible
-	const observerOptions = { root: null, rootMargin: "0px", threshold: 0.5 };
+	const observerOptions = { root: null, rootMargin: "0px", threshold: 0.25 };
 
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
@@ -84,8 +107,7 @@
 			const mappedLink = sectionLinkMap.get(entry.target);
 			// Si el link está oculto en mobile (display:none), no cambia el estado activo
 			if (!mappedLink || mappedLink.offsetParent === null) return;
-			links.forEach((l) => l.classList.remove("active"));
-			mappedLink.classList.add("active");
+			setActive(mappedLink);
 		});
 	}, observerOptions);
 
@@ -94,22 +116,35 @@
 	};
 	startObserver();
 
-	// Scroll suave al hacer click — descuenta la altura del nav sticky
+	// Mueve el foco al encabezado destino para que el SR anuncie la sección
+	const focusSection = (section: HTMLElement) => {
+		const heading = section.querySelector<HTMLElement>("h1, h2, h3");
+		if (!heading) return;
+		heading.setAttribute("tabindex", "-1");
+		heading.focus({ preventScroll: true });
+	};
+
+	// Scroll suave al hacer click — respeta scroll-margin-top de cada sección
 	links.forEach((link) => {
-		link.addEventListener("click", () => {
+		link.addEventListener("click", (e) => {
+			// Respeta clic con modificadores (abrir en pestaña nueva, etc.)
+			if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
 			const targetId = link.dataset.target!;
 			const section = getSection(targetId);
 			if (!section) return;
 
-			links.forEach((l) => l.classList.remove("active"));
-			link.classList.add("active");
+			e.preventDefault();
+
+			setActive(link);
 			observer.disconnect();
 
-			const navHeight = document.getElementById("navbar")?.offsetHeight ?? 0;
-			window.scrollTo({
-				top: section.offsetTop - navHeight,
-				behavior: "smooth",
-			});
+			if (targetId === "intro") {
+				window.scrollTo({ top: 0, behavior: "smooth" });
+			} else {
+				section.scrollIntoView({ behavior: "smooth", block: "start" });
+			}
+			focusSection(section);
 
 			setTimeout(startObserver, 800);
 		});
@@ -123,6 +158,8 @@
 	}
 
 	.lb {
+		display: inline-block;
+		text-align: center;
 		will-change: transform;
 	}
 
