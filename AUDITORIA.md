@@ -54,22 +54,7 @@ vía `gsap.globalTimeline.timeScale(500)`).
 
 ### Estado
 
-- [ ] Sin corregir
-
----
-
-## Funcionales
-
-### B3 — Overlay "Visitar proyecto" solo con `:hover`
-**Estado:** [ ]
-**Archivo:** `ProjectPage.astro:63-76,180-191`.
-
-El overlay es invisible con teclado (focus) y en dispositivos táctiles. Además duplica el
-CTA inferior con el mismo destino y nombre casi idéntico (`aria-label="Visitar X"` en la
-imagen + botón "Visitar proyecto").
-
-**Corrección sugerida:** mostrar el overlay con `:focus-visible` en el enlace; considerar
-eliminarlo por ser redundante.
+Sin hallazgos pendientes.
 
 ---
 
