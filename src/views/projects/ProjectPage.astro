@@ -158,12 +158,12 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 
 <style>
 	/* FOUC prevention — autoAlpha manages visibility+opacity together */
-	#project-eyebrow,
-	#project-title,
-	#project-techs,
-	#project-ctas,
-	#project-description p,
-	#project-description h2 {
+	:global(.js) #project-eyebrow,
+	:global(.js) #project-title,
+	:global(.js) #project-techs,
+	:global(.js) #project-ctas,
+	:global(.js) #project-description p,
+	:global(.js) #project-description h2 {
 		visibility: hidden;
 		will-change: transform;
 	}
