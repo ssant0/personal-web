@@ -1,159 +1,146 @@
-# 🌐 Manuel Samaniego — Portfolio
+# Manuel Samaniego — Portafolio
 
-> Personal portfolio website showcasing projects, skills, and professional profile. Built as a blazing-fast static site targeting SME clients.
+Portafolio personal de **Manuel Samaniego**, ingeniero full stack con foco en backend (Java / Spring Boot). Sitio estático construido con Astro 6 y Tailwind CSS 4, con animaciones GSAP y despliegue en Cloudflare Pages.
 
 [![Astro](https://img.shields.io/badge/Astro-6.x-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Cloudflare Pages](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
 
-**Live site: [www.manuelsamaniego.com.mx](https://www.manuelsamaniego.com.mx)**
+**Sitio en vivo: [www.manuelsamaniego.com.mx](https://www.manuelsamaniego.com.mx)**
 
 ---
 
-## Table of Contents
+## Tabla de contenidos
 
-- [Description](#description)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Available Scripts](#available-scripts)
-- [Project Structure](#project-structure)
-- [Adding Content](#adding-content)
-- [About](#about)
-- [Contact](#contact)
-
----
-
-## Description
-
-A personal portfolio built with Astro 6 and Tailwind CSS 4, deployed as a fully static site on Cloudflare Pages. It features smooth GSAP scroll-triggered animations, auto-generated project detail pages, a Linktree-style links page, and a LFPDPPP-compliant privacy notice.
+- [Descripción](#descripción)
+- [Stack](#stack)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Scripts](#scripts)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Agregar contenido](#agregar-contenido)
+- [Documentación](#documentación)
+- [Contacto](#contacto)
 
 ---
 
-## Tech Stack
+## Descripción
 
-- **Framework:** [Astro 6](https://astro.build/) — static site generation (SSG), zero JS by default
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/) — via `@tailwindcss/vite` plugin
-- **Animations:** [GSAP 3](https://gsap.com/) — scroll-triggered and on-load animations
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Image Optimization:** [Sharp](https://sharp.pixelplumbing.com/) — automatic WebP conversion
+Sitio personal orientado a procesos de contratación técnica. Presenta mi perfil de ingeniería (backend Java/Spring, bases de datos relacionales e infraestructura), el detalle de mis proyectos (arquitectura, retos y resultados), mi trayectoria y mi stack.
+
+Incluye animaciones de scroll con GSAP, páginas de detalle de proyecto autogeneradas, una página de enlaces estilo Linktree y un aviso de privacidad conforme a la LFPDPPP.
+
+---
+
+## Stack
+
+- **Framework:** [Astro 6](https://astro.build/) — generación de sitio estático (SSG), cero JS por defecto
+- **Estilos:** [Tailwind CSS 4](https://tailwindcss.com/) — vía el plugin `@tailwindcss/vite`
+- **Animaciones:** [GSAP 3](https://gsap.com/) — animaciones de entrada y de scroll
+- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/)
+- **Imágenes:** [Sharp](https://sharp.pixelplumbing.com/) — conversión automática a WebP
 - **Sitemap:** [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
-- **Deployment:** [Cloudflare Pages](https://pages.cloudflare.com/)
+- **Despliegue:** [Cloudflare Pages](https://pages.cloudflare.com/)
 
 ---
 
-## Prerequisites
+## Requisitos
 
-| Tool | Version |
+| Herramienta | Versión |
 |---|---|
 | Node.js | `>= 20.x` |
-| pnpm | `>= 9.x` |
+| npm | `>= 10.x` |
 
 ---
 
-## Installation
+## Instalación
 
-1. **Clone the repository:**
+1. **Clona el repositorio:**
 
-    ```bash
-    git clone https://github.com/ssant0/portfolio.git
-    cd portfolio
-    ```
+   ```bash
+   git clone https://github.com/ssant0/personal-web.git
+   cd personal-web
+   ```
 
-2. **Install dependencies:**
+2. **Instala dependencias:**
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   npm install
+   ```
 
-3. **Start the development server:**
+3. **Levanta el servidor de desarrollo:**
 
-    ```bash
-    pnpm dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
-Open [http://localhost:4321](http://localhost:4321) in your browser.
+Abre [http://localhost:4321](http://localhost:4321) en el navegador.
 
-> [!NOTE]
-> The dev server starts with `--host`, making it accessible from other devices on your local network.
+> **Nota:** el servidor de desarrollo arranca con `--host`, por lo que también es accesible desde otros dispositivos de la red local.
 
 ---
 
-## Available Scripts
+## Scripts
 
-| Command | Description |
+| Comando | Descripción |
 |---|---|
-| `pnpm dev` | Start the development server (accessible on network) |
-| `pnpm build` | Build for production → `dist/` |
-| `pnpm preview` | Preview the production build locally |
+| `npm run dev` | Servidor de desarrollo (accesible en la red) |
+| `npm run build` | Build de producción → `dist/` |
+| `npm run preview` | Previsualiza el build de producción |
 
 ---
 
-## Project Structure
+## Estructura del proyecto
 
 ```
 src/
-  layouts/       # Layout.astro — HTML shell, fonts, GA4, footer
+  layouts/       # Layout.astro — shell HTML, fuentes, GA4, footer
   pages/         # index, projects/[project], 404, aviso-de-privacidad, links
   views/
     home/
-      sections/  # Intro, RecentProjects, Technologies (full-page sections)
+      sections/  # Intro, RecentProjects, AboutMe, Experience, Technologies
       components/ # ProjectCard
+    projects/    # ProjectPage (case study de proyecto)
     shared/      # NavBar, Contact, Footer
-  data/          # allProjects.ts, technologies.ts, socialLinks.ts
+  data/          # allProjects.ts, experience.ts, technologies.ts, socialLinks.ts
   styles/        # global.css
   types/         # Project.ts
+  utils/         # email.ts
 public/
   css/           # fonts.css
 ```
 
 ---
 
-## Adding Content
+## Agregar contenido
 
-### New project
+### Nuevo proyecto
 
-Add an entry to `src/data/allProjects.ts`:
+Agrega una entrada en `src/data/allProjects.ts`. Campos requeridos: `title`, `shortDescription`, `longDescription`, `role`, `image`, `liveLink`, `technologies[]`, `keywords[]`. Campos opcionales: `status`, `ctaLabel`, `repoLink`, `repoPrivate`, `architecture[]`, `challenges[]`, `outcomes[]`.
 
-```ts
-// src/data/allProjects.ts
-import myImage from "../assets/img/my-project.png";
+La página de detalle (`ProjectPage.astro`) renderiza las secciones de **Arquitectura**, **Retos y decisiones** y **Resultados** solo cuando esos arrays tienen contenido. El slug de la URL se genera automáticamente a partir del `title`.
 
-export const allProjects = [
-  {
-    title: "Project Name",        // generates the URL slug automatically
-    shortDescription: "...",
-    longDescription: "...",
-    image: myImage,               // Astro converts to WebP on build
-    liveLink: "https://...",
-    technologies: ["Astro", "TypeScript"],
-    keywords: ["portfolio", "web"],
-  },
-];
-```
+### Nueva experiencia
 
-### New technology
+Agrega una entrada en `src/data/experience.ts` (`ExperienceItem`): `role`, `organization`, `period` y, opcionalmente, `employmentType`, `location`, `modality`, más `bullets[]`. Mantén el orden cronológico inverso.
 
-Add an entry to `src/data/technologies.ts` with a `name` and inline SVG `icon`.
+### Nueva tecnología
+
+Agrega una entrada dentro del grupo correcto en `src/data/technologies.ts` (Backend · Bases de datos · Infra & DevOps · Frontend · Fundamentos web · Tooling), con `name` e `icon` SVG.
 
 ---
 
-## About
+## Documentación
 
-I'm **Manuel Samaniego**, a Web Developer passionate about automation. I've built 5 internal systems dedicated to automating my own workflows and responsibilities.
-
-**Technologies I work with:**
-
-- Java & Spring Boot
-- Angular
-- Astro & TypeScript
-- PostgreSQL
+- `AGENTS.md` — guía de arquitectura, sistema de diseño, patrones de animación y convenciones del proyecto.
+- `AUDITORIA.md` — auditoría de empleabilidad (hallazgos y estado de ejecución).
+- `PLAN-REACTIVACION.md` — plan de estudio y repaso técnico.
 
 ---
 
-## Contact
+## Contacto
 
 - **LinkedIn:** [Manuel Samaniego](https://www.linkedin.com/in/manuel-samaniego/)
-- **Instagram:** [@ssamanieg0\_](https://www.instagram.com/ssamanieg0_/)
+- **GitHub:** [ssant0](https://github.com/ssant0)
 - **Email:** [contacto@manuelsamaniego.com.mx](mailto:contacto@manuelsamaniego.com.mx)

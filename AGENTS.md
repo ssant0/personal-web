@@ -64,10 +64,11 @@ public/
 
 **New experience** — add entry to `src/data/experience.ts` (`ExperienceItem`): `role`, `organization`, `period`, and optional `employmentType`, `location`, `modality`, plus `bullets[]`. Rendered in the `Experience` section; keep reverse-chronological order.
 
-**New technology** — add entry to `src/data/technologies.ts` with `name` and inline SVG `icon`.
-- Maintain order: **Backend** (Java, Spring Boot, PostgreSQL) → **Frontend** (Angular, TypeScript, JavaScript) → **Fundamentos** (HTML, CSS) → **Tooling** (Astro). Add new techs inside the correct group.
-- SVG icons often carry whitespace around the artwork. Fix by computing the real bounding box from the polygon/path coordinates and setting `viewBox="minX minY width height"` to crop tightly.
-- To colorize a monochrome SVG: add a `<linearGradient>` inside `<defs>` and apply `fill="url(#id)"` to the root `<g>`. Use brand colors — `processIcon` preserves internal SVG content untouched.
+**New technology** — add an item (`name` + inline SVG `icon`) inside the correct group of `src/data/technologies.ts` (`technologyGroups`), rendered by `Technologies.astro` with a subtitle per group.
+- Groups: **Backend** (Java, Spring Boot) · **Bases de datos** (PostgreSQL) · **Infra & DevOps** (Docker, Linux) · **Frontend** (Angular, TypeScript, JavaScript) · **Fundamentos web** (HTML, CSS) · **Tooling** (Astro).
+- Icons are colorized brand SVGs. Prefer `https://cdn.simpleicons.org/<slug>` (returns a colored `<svg>`). `processIcon` strips `<?xml>`, comments and `<title>`, adds `class="w-12 h-12"` + `aria-hidden`, and removes `width`/`height`.
+- Custom SVGs often carry whitespace around the artwork. Fix by computing the real bounding box from the polygon/path coordinates and setting `viewBox="minX minY width height"` to crop tightly.
+- To colorize a monochrome SVG: add a `<linearGradient>` inside `<defs>` and apply `fill="url(#id)"` to the root `<g>`. Use brand colors — `processIcon` preserves internal SVG content (other than the title) untouched.
 
 ## Analytics
 

@@ -6,6 +6,53 @@
 
 ---
 
+## Estado de ejecución
+
+> Leyenda: ✅ hecho · 🟡 parcial · ☐ pendiente. Actualizar al cerrar cada punto.
+
+### 🔴 Bloqueadores
+- ✅ **1.** Meta description orientada a ingeniería (`index.astro`)
+- ✅ **2.** Keywords de ingeniería, sin términos freelance (`index.astro`)
+- ✅ **3.** README reescrito en español con posicionamiento de ingeniería
+- ✅ **4.** Bio de `/links` reposicionada
+- ✅ **5.** Copy de Contacto reposicionado ("— HABLEMOS", orientado a recruiting)
+- ☐ **6.** CV en PDF + botón "Descargar CV" _(requiere el PDF del usuario)_
+- ✅ **7.** Link de agencia eliminado del Linktree
+- ☐ **8.** Open Graph / Twitter Cards
+- 🟡 **9.** Repos de flagships (Sorteum añadido con repo privado; Odoo/Moodle sin repo)
+- ✅ **10.** Proyectos reordenados por impacto técnico
+- 🟡 **11.** Instagram fuera del hero (sigue presente en la sección Contacto)
+- ☐ **12.** Evidencia de contenedores/CI/tests _(acción personal — ver `PLAN-REACTIVACION.md`)_
+- ☐ **13.** Lockfile único (`package-lock.json` + `pnpm-lock.yaml`)
+- ☐ **14.** Corregir slug del README (`portfolio` → `personal-web`)
+
+### 🟡 Mejoras de contenido
+- ✅ **1.** Hero / propuesta de valor reescrita
+- ✅ **2.** Case studies de proyectos (rol, arquitectura, retos, resultados)
+- ✅ **3.** Seniority en "Sobre mí" sin antigüedad
+- ✅ **4a.** Sección Experiencia
+- ✅ **4b.** Skills agrupadas por dominio con subtítulos (Backend · Bases de datos · Infra & DevOps · Frontend · Fundamentos web · Tooling; +Docker y Linux)
+- ☐ **4c.** CTA "Descargar CV" persistente
+- ☐ **5.** Docker/tests/CI real _(acción personal)_
+- ➖ Ejemplos de copy reescrito (referencia, no ejecutable)
+
+### 🟢 Refinamiento de código
+- ✅ **ProjectCard** `image: any` → `ImageMetadata`
+- ✅ **ProjectPage**: secciones semánticas `<section>` + `data-reveal`
+- ☐ Semántica de secciones del home (`<div id>` → `<section aria-labelledby>`)
+- ☐ Email con fallback sin JS (`href=""` + hidratación por JS)
+- ☐ `ScrollTrigger.registerPlugin` duplicado → helper
+- ☐ `<style is:global>` duplicado → `global.css`
+- ☐ Metadata de `package.json` (name/version/description/author)
+- ☐ ESLint + Prettier + `astro check` + CI
+- ☐ Comprimir imágenes fuente (`klyn.png`, `cybercafe10m.png`)
+- ☐ `will-change: transform` permanente
+- ☐ `og:*` / `twitter:*` / `robots.txt` / JSON-LD `Person`
+- ☐ `alt` descriptivos y `keywords[]` de proyectos recortados
+- ☐ Mover `AUDITORIA.md` a `/docs` o presentarlo como QA report
+
+---
+
 ## 🔴 Bloqueadores Críticos
 
 Elementos comerciales o estructurales a eliminar/corregir ya.
