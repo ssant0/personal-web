@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Intro from "../views/home/sections/Intro.astro";
 import AboutMe from "../views/home/sections/AboutMe.astro";
+import Experience from "../views/home/sections/Experience.astro";
 import Technologies from "../views/home/sections/Technologies.astro";
 import RecentProjects from "../views/home/sections/RecentProjects.astro";
 import Contact from "../views/shared/Contact.astro";
@@ -9,16 +10,17 @@ import NavBar from "../views/shared/NavBar.astro";
 ---
 
 <Layout
-	title="Manuel Samaniego | Desarrollador Web"
-	metaTitle="Manuel Samaniego - Desarrollador Web Portafolio"
-	description="Soy un desarrollador web especializado en aplicaciones a medida y sitios web para pymes. Diseño responsive, rendimiento óptimo y mantenimiento continuo."
-	keywords="full-stack developer, web development, software engineer, angular, node.js, javascript, portfolio, web developer, software developer, freelancer, landing pages, desarrollo web, desarrollador freelance, sitios web para negocios, páginas web personalizadas, diseño web, desarrollador web México, programación a medida, soluciones digitales, desarrollo para pymes, diseño responsivo, frontend developer, backend developer, mantenimiento web, contacta desarrollador web, desarrollo web freelance, programador web"
+	title="Manuel Samaniego | Ingeniero Full Stack (Java/Spring)"
+	metaTitle="Manuel Samaniego | Ingeniero Full Stack Java & Spring Boot"
+	description="Ingeniero Full Stack con foco en backend Java/Spring Boot y PostgreSQL. Construyo APIs y productos web y los despliego en Linux con Docker. Disponible para roles remotos o híbridos."
+	keywords="ingeniero de software, backend developer, java, spring boot, postgresql, angular, typescript, docker, linux, api rest, software engineer, full stack, java developer, spring developer, devops"
 >
 	<NavBar/>
 	<main id="main" tabindex="-1" class="relative z-10 flex justify-center flex-col items-center">
 		<Intro/>
 		<RecentProjects/>
 		<AboutMe/>
+		<Experience/>
 		<Technologies/>
 		<Contact/>
 	</main>

@@ -1,18 +1,39 @@
 ---
 import {Image} from "astro:assets";
 import type {ImageMetadata} from "astro";
+import type {ProjectChallenge} from "../../types/Project";
 
 interface Props {
 	title: string;
 	longDescription: string;
 	image: ImageMetadata;
 	liveLink: string;
+	ctaLabel?: string;
 	repoLink?: string;
+	repoPrivate?: boolean;
+	role: string;
+	status?: string;
 	technologies: string[];
+	architecture?: string[];
+	challenges?: ProjectChallenge[];
+	outcomes?: string[];
 }
 
-const {title, longDescription, image, liveLink, repoLink, technologies} =
-	Astro.props;
+const {
+	title,
+	longDescription,
+	image,
+	liveLink,
+	ctaLabel = "Visitar proyecto",
+	repoLink,
+	repoPrivate,
+	role,
+	status,
+	technologies,
+	architecture = [],
+	challenges = [],
+	outcomes = [],
+} = Astro.props;
 ---
 
 <main id="main" tabindex="-1" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-28">
@@ -24,7 +45,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
 			<path fill-rule="evenodd"
-			      d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 1 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+			      d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
 		</svg>
 		Volver al inicio
 	</a>
@@ -49,6 +70,16 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
         </span>
 			))}
 		</div>
+
+		<p id="project-meta" class="mt-4 text-sm text-gray-500">
+			<span class="font-medium text-gray-700">Rol:</span> {role}
+			{status && (
+				<>
+					<span class="mx-2 text-gray-300" aria-hidden="true">·</span>
+					<span class="font-medium text-gray-700">Estado:</span> {status}
+				</>
+			)}
+		</p>
 	</header>
 
 	<!-- Hero image -->
@@ -65,7 +96,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 				class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
         <span
 	        class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
-          Visitar proyecto
+          {ctaLabel}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
             <path
 	            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
@@ -78,14 +109,14 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	</div>
 
 	<!-- CTAs -->
-	<div id="project-ctas" class="flex flex-wrap gap-3 mb-14 max-[400px]:flex-col">
+	<div id="project-ctas" class="flex flex-wrap items-center gap-3 mb-14 max-[400px]:flex-col max-[400px]:items-stretch">
 		<a
 			href={liveLink}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition text-white px-7 py-3 flex gap-2 items-center w-fit"
+			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition text-white px-7 py-3 flex gap-2 items-center w-fit max-[400px]:justify-center"
 		>
-			<span class="text-base">Visitar proyecto</span>
+			<span class="text-base">{ctaLabel}</span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
 				<path
 					d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
@@ -99,7 +130,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 				href={repoLink}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center w-fit"
+				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center w-fit max-[400px]:justify-center"
 			>
 				<span class="text-base">Ver repositorio</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -108,16 +139,67 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 				</svg>
 			</a>
 		)}
+
+		{!repoLink && repoPrivate && (
+			<span class="rounded-xl border border-gray-200 bg-gray-50 text-gray-500 px-5 py-3 flex gap-2 items-center w-fit text-sm font-medium">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+					<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+				</svg>
+				Código privado
+			</span>
+		)}
 	</div>
 
 	<!-- Description -->
 	<section id="project-description">
-		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3">— DESCRIPCIÓN</p>
-		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl">Sobre el proyecto</h2>
-		<p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base">
+		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— DESCRIPCIÓN</p>
+		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Sobre el proyecto</h2>
+		<p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>
 			{longDescription}
 		</p>
 	</section>
+
+	<!-- Architecture -->
+	{architecture.length > 0 && (
+		<section id="project-architecture" class="mt-16">
+			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— ARQUITECTURA</p>
+			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Arquitectura</h2>
+			<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
+				{architecture.map((item) => (
+					<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>{item}</li>
+				))}
+			</ul>
+		</section>
+	)}
+
+	<!-- Challenges -->
+	{challenges.length > 0 && (
+		<section id="project-challenges" class="mt-16">
+			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— RETOS Y DECISIONES</p>
+			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Retos y decisiones</h2>
+			<div class="grid gap-4 sm:grid-cols-2">
+				{challenges.map((challenge) => (
+					<article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5" data-reveal>
+						<h3 class="text-base font-medium text-[#2d5d54]">{challenge.title}</h3>
+						<p class="mt-2 text-sm text-gray-600 leading-relaxed">{challenge.description}</p>
+					</article>
+				))}
+			</div>
+		</section>
+	)}
+
+	<!-- Outcomes -->
+	{outcomes.length > 0 && (
+		<section id="project-outcomes" class="mt-16">
+			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— RESULTADOS</p>
+			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Resultados</h2>
+			<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
+				{outcomes.map((item) => (
+					<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>{item}</li>
+				))}
+			</ul>
+		</section>
+	)}
 
 </main>
 
@@ -131,6 +213,7 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	gsap.set("#project-eyebrow", { y: 10 });
 	gsap.set("#project-title",   { y: 18 });
 	gsap.set("#project-techs",   { y: 10 });
+	gsap.set("#project-meta",    { y: 10 });
 	gsap.set("#project-ctas",    { y: 10 });
 
 	const fadeUp = { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" };
@@ -138,23 +221,17 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	gsap.to("#project-eyebrow", { ...fadeUp, delay: 0.1  });
 	gsap.to("#project-title",   { ...fadeUp, delay: 0.25 });
 	gsap.to("#project-techs",   { ...fadeUp, delay: 0.4  });
-	gsap.to("#project-ctas",    { ...fadeUp, delay: 0.55 });
+	gsap.to("#project-meta",    { ...fadeUp, delay: 0.5  });
+	gsap.to("#project-ctas",    { ...fadeUp, delay: 0.6  });
 
-	// Description — scroll-triggered, same pattern as home sections
-	const desc = document.querySelector<HTMLElement>("#project-description");
-	if (desc) {
-		const trigger = { trigger: desc, start: "top 80%" };
-		const ps  = desc.querySelectorAll("p");
-		const h2  = desc.querySelector("h2");
-
-		gsap.set(ps[0], { y: 10 });
-		gsap.set(h2,    { y: 15 });
-		gsap.set(ps[1], { y: 10 });
-
-		if (ps[0]) gsap.to(ps[0], { ...fadeUp,               scrollTrigger: trigger });
-		if (h2)    gsap.to(h2,    { ...fadeUp, delay: 0.15,  scrollTrigger: trigger });
-		if (ps[1]) gsap.to(ps[1], { ...fadeUp, delay: 0.3,   scrollTrigger: trigger });
-	}
+	// Scroll-revealed blocks (description, architecture, challenges, outcomes)
+	gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
+		gsap.set(el, { y: 14, autoAlpha: 0 });
+		gsap.to(el, {
+			...fadeUp,
+			scrollTrigger: { trigger: el, start: "top 90%" },
+		});
+	});
 </script>
 
 <style>
@@ -162,9 +239,9 @@ const {title, longDescription, image, liveLink, repoLink, technologies} =
 	:global(.js) #project-eyebrow,
 	:global(.js) #project-title,
 	:global(.js) #project-techs,
+	:global(.js) #project-meta,
 	:global(.js) #project-ctas,
-	:global(.js) #project-description p,
-	:global(.js) #project-description h2 {
+	:global(.js) [data-reveal] {
 		visibility: hidden;
 		will-change: transform;
 	}

@@ -1,15 +1,17 @@
 ---
 import {Image} from "astro:assets";
+import type {ImageMetadata} from "astro";
 
 interface Props {
 	title: string;
 	description: string;
-	image: any;
+	image: ImageMetadata;
 	link: string;
 	technologies?: string[];
+	status?: string;
 }
 
-const {title, description, image, link, technologies = []} = Astro.props;
+const {title, description, image, link, technologies = [], status} = Astro.props;
 
 const cleanTitle = title
 	.replaceAll(" ", "-")
@@ -26,6 +28,11 @@ const id = "card-" + cleanTitle;
   max-[660px]:w-[calc(100%-60px)]"
 >
 	<div class="img-wrapper relative shrink-0 w-[45%] max-[850px]:w-full max-[850px]:h-[220px] overflow-hidden">
+		{status && (
+			<span class="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm text-[#2d5d54] text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
+				{status}
+			</span>
+		)}
 		<Image
 			src={image}
 			alt={`Imagen del proyecto: ${title}`}

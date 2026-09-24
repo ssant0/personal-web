@@ -40,6 +40,7 @@ html {
 #intro,
 #recent-projects,
 #about,
+#experience,
 #contact,
 #technologies {
 	scroll-margin-top: var(--nav-height, 5.5rem);

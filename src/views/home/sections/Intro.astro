@@ -23,10 +23,10 @@ import {socialLinks} from "../../../data/socialLinks";
 	<!-- Badges -->
 	<div id="intro-badges" class="flex flex-wrap items-center justify-center gap-2 mb-3">
 		<div class="flex items-center px-4 py-1.5 max-[550px]:px-3 max-[550px]:py-1 max-[382px]:px-2.5 bg-[#2d5d54]/10 rounded-full">
-			<span class="text-[#2d5d54] text-sm max-[440px]:text-xs font-medium tracking-wide max-[440px]:tracking-normal">&lt;/&gt;&nbsp;&nbsp;Desarrollador Full Stack</span>
+			<span class="text-[#2d5d54] text-sm max-[440px]:text-xs font-medium tracking-wide max-[440px]:tracking-normal">&lt;/&gt;&nbsp;&nbsp;Ingeniero Full Stack · Java / Spring</span>
 		</div>
 		<div class="flex items-center px-4 py-1.5 max-[550px]:px-3 max-[550px]:py-1 max-[382px]:px-2.5 bg-[#2d5d54]/10 rounded-full">
-			<span class="text-[#2d5d54] text-sm max-[440px]:text-xs font-medium tracking-wide max-[440px]:tracking-normal">Disponible para nuevas oportunidades</span>
+			<span class="text-[#2d5d54] text-sm max-[440px]:text-xs font-medium tracking-wide max-[440px]:tracking-normal">Disponible · remoto, híbrido o reubicación</span>
 		</div>
 	</div>
 
@@ -36,11 +36,19 @@ import {socialLinks} from "../../../data/socialLinks";
 		Manuel Samaniego
 	</h1>
 	<p
+		id="intro-lead"
 		class="text-lg text-center pt-3 max-w-[540px] text-gray-600 max-[660px]:text-base max-[660px]:mt-1 max-[550px]:text-sm max-[382px]:text-xs"
 	>
-		Desarrollador Full Stack con dominio de Java, Spring Boot y Angular.
-		Construyo productos digitales de punta a punta — del API a la interfaz —
-		y estoy disponible para nuevas oportunidades profesionales.
+		Ingeniero Full Stack con foco en backend. Construyo APIs y aplicaciones
+		con Java y Spring Boot sobre PostgreSQL, y las llevo a producción en
+		Linux con Docker. Frontend con Astro, Angular y TypeScript.
+	</p>
+
+	<p
+		id="intro-stack"
+		class="pt-4 text-sm font-medium tracking-wide text-[#2d5d54]/80 text-center max-[550px]:text-xs max-[382px]:text-[11px]"
+	>
+		Java · Spring Boot · PostgreSQL · Docker · Linux
 	</p>
 
 	<!-- Social links -->
@@ -143,7 +151,8 @@ import {socialLinks} from "../../../data/socialLinks";
 	:global(.js) .avatar-ring,
 	:global(.js) #intro-badges,
 	:global(.js) #intro h1,
-	:global(.js) #intro p,
+	:global(.js) #intro-lead,
+	:global(.js) #intro-stack,
 	:global(.js) .media-links,
 	:global(.js) #intro-ctas {
 		visibility: hidden;
@@ -177,15 +186,17 @@ import {socialLinks} from "../../../data/socialLinks";
 	gsap.set(".avatar-ring", {scale: 0});
 	gsap.set("#intro-badges", {scale: 0});
 	gsap.set("#intro h1", {scale: 0, y: 20});
-	gsap.set("#intro p", {scale: 0, y: 15});
+	gsap.set("#intro-lead", {scale: 0, y: 15});
+	gsap.set("#intro-stack", {scale: 0, y: 10});
 	gsap.set(".media-links", {scale: 0});
 	gsap.set("#intro-ctas", {scale: 0, y: 15});
 
 	gsap.to(".avatar-ring", baseTo);
 	gsap.to("#intro-badges", {...baseTo, delay: 0.2});
 	gsap.to("#intro h1", {...baseTo, y: 0, delay: 0.4});
-	gsap.to("#intro p", {...baseTo, y: 0, delay: 0.6});
-	gsap.to(".media-links", {...baseTo, delay: 0.8});
+	gsap.to("#intro-lead", {...baseTo, y: 0, delay: 0.6});
+	gsap.to("#intro-stack", {...baseTo, y: 0, delay: 0.75});
+	gsap.to(".media-links", {...baseTo, delay: 0.9});
 	gsap.to("#intro-ctas", {...baseTo, y: 0, delay: 1});
 
 	document.getElementById('btn-ver-proyectos')?.addEventListener('click', (e) => {
