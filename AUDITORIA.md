@@ -24,7 +24,7 @@
 - 🟡 **11.** Instagram fuera del hero (sigue presente en la sección Contacto)
 - ☐ **12.** Evidencia de contenedores/CI/tests _(acción personal — ver `PLAN-REACTIVACION.md`)_
 - ☐ **13.** Lockfile único (`package-lock.json` + `pnpm-lock.yaml`)
-- ☐ **14.** Corregir slug del README (`portfolio` → `personal-web`)
+- ✅ **14.** Slug del README corregido (`personal-web`)
 
 ### 🟡 Mejoras de contenido
 - ✅ **1.** Hero / propuesta de valor reescrita
