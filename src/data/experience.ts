@@ -1,12 +1,12 @@
 export type ExperienceItem = {
-	role: string
-	organization: string
-	period: string
-	employmentType?: string
-	location?: string
-	modality?: string
-	bullets: string[]
-}
+	role: string;
+	organization: string;
+	period: string;
+	employmentType?: string;
+	location?: string;
+	modality?: string;
+	bullets: string[];
+};
 
 export const experience: ExperienceItem[] = [
 	{
@@ -49,4 +49,4 @@ export const experience: ExperienceItem[] = [
 			"Maquetación responsive, corrección de bugs y mejoras de interfaz.",
 		],
 	},
-]
+];

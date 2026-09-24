@@ -1,7 +1,7 @@
 ---
-import {Image} from "astro:assets";
-import type {ImageMetadata} from "astro";
-import type {ProjectChallenge} from "../../types/Project";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { ProjectChallenge } from "../../types/Project";
 
 interface Props {
 	title: string;
@@ -37,15 +37,24 @@ const {
 ---
 
 <main id="main" tabindex="-1" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-28">
-
 	<!-- Back link -->
 	<a
 		href="/"
 		class="back-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-[#2d5d54] transition-colors duration-300 mb-12"
 	>
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-			<path fill-rule="evenodd"
-			      d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="16"
+			height="16"
+			fill="currentColor"
+			viewBox="0 0 16 16"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				fill-rule="evenodd"
+				d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"
+			></path>
 		</svg>
 		Volver al inicio
 	</a>
@@ -55,30 +64,41 @@ const {
 		<p
 			id="project-eyebrow"
 			class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3"
-		>— PROYECTO</p>
+		>
+			— PROYECTO
+		</p>
 
 		<h1
 			id="project-title"
 			class="codec-pro text-5xl font-medium leading-tight mb-5
       max-[640px]:text-4xl max-[440px]:text-3xl"
-		>{title}</h1>
+		>
+			{title}
+		</h1>
 
 		<div id="project-techs" class="flex flex-wrap gap-2">
-			{technologies.map((tech) => (
-				<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2.5 py-1 rounded-full font-medium">
-          {tech}
-        </span>
-			))}
+			{
+				technologies.map((tech) => (
+					<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2.5 py-1 rounded-full font-medium">
+						{tech}
+					</span>
+				))
+			}
 		</div>
 
 		<p id="project-meta" class="mt-4 text-sm text-gray-500">
-			<span class="font-medium text-gray-700">Rol:</span> {role}
-			{status && (
-				<>
-					<span class="mx-2 text-gray-300" aria-hidden="true">·</span>
-					<span class="font-medium text-gray-700">Estado:</span> {status}
-				</>
-			)}
+			<span class="font-medium text-gray-700">Rol:</span>
+			{role}
+			{
+				status && (
+					<>
+						<span class="mx-2 text-gray-300" aria-hidden="true">
+							·
+						</span>
+						<span class="font-medium text-gray-700">Estado:</span> {status}
+					</>
+				)
+			}
 		</p>
 	</header>
 
@@ -93,23 +113,38 @@ const {
 			/>
 			<div
 				aria-hidden="true"
-				class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <span
-	        class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md">
-          {ctaLabel}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-            <path
-	            d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-            <path
-	            d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
-          </svg>
-        </span>
+				class="img-overlay absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300"
+			>
+				<span
+					class="bg-white/90 text-[#2d5d54] text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2 shadow-md"
+				>
+					{ctaLabel}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="14"
+						height="14"
+						fill="currentColor"
+						viewBox="0 0 16 16"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<path
+							d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+						></path>
+						<path
+							d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+						></path>
+					</svg>
+				</span>
 			</div>
 		</a>
 	</div>
 
 	<!-- CTAs -->
-	<div id="project-ctas" class="flex flex-wrap items-center gap-3 mb-14 max-[400px]:flex-col max-[400px]:items-stretch">
+	<div
+		id="project-ctas"
+		class="flex flex-wrap items-center gap-3 mb-14 max-[400px]:flex-col max-[400px]:items-stretch"
+	>
 		<a
 			href={liveLink}
 			target="_blank"
@@ -117,90 +152,144 @@ const {
 			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition text-white px-7 py-3 flex gap-2 items-center w-fit max-[400px]:justify-center"
 		>
 			<span class="text-base">{ctaLabel}</span>
-			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="15"
+				height="15"
+				fill="currentColor"
+				viewBox="0 0 16 16"
+				aria-hidden="true"
+				focusable="false"
+			>
 				<path
-					d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+					d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"
+				></path>
 				<path
-					d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+					d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"
+				></path>
 			</svg>
 		</a>
 
-		{repoLink && (
-			<a
-				href={repoLink}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center w-fit max-[400px]:justify-center"
-			>
-				<span class="text-base">Ver repositorio</span>
-				<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-					<path
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-				</svg>
-			</a>
-		)}
+		{
+			repoLink && (
+				<a
+					href={repoLink}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="cta-secondary rounded-xl border-2 border-[#2d5d54] text-[#2d5d54] hover:bg-[#2d5d54] hover:text-white transition px-7 py-3 flex gap-2 items-center w-fit max-[400px]:justify-center"
+				>
+					<span class="text-base">Ver repositorio</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="15"
+						height="15"
+						fill="currentColor"
+						viewBox="0 0 16 16"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+					</svg>
+				</a>
+			)
+		}
 
-		{!repoLink && repoPrivate && (
-			<span class="rounded-xl border border-gray-200 bg-gray-50 text-gray-500 px-5 py-3 flex gap-2 items-center w-fit text-sm font-medium">
-				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-					<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
-				</svg>
-				Código privado
-			</span>
-		)}
+		{
+			!repoLink && repoPrivate && (
+				<span class="rounded-xl border border-gray-200 bg-gray-50 text-gray-500 px-5 py-3 flex gap-2 items-center w-fit text-sm font-medium">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="14"
+						height="14"
+						fill="currentColor"
+						viewBox="0 0 16 16"
+						aria-hidden="true"
+						focusable="false"
+					>
+						<path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2" />
+					</svg>
+					Código privado
+				</span>
+			)
+		}
 	</div>
 
 	<!-- Description -->
 	<section id="project-description">
-		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— DESCRIPCIÓN</p>
-		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Sobre el proyecto</h2>
+		<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>
+			— DESCRIPCIÓN
+		</p>
+		<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>
+			Sobre el proyecto
+		</h2>
 		<p class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>
 			{longDescription}
 		</p>
 	</section>
 
 	<!-- Architecture -->
-	{architecture.length > 0 && (
-		<section id="project-architecture" class="mt-16">
-			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— ARQUITECTURA</p>
-			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Arquitectura</h2>
-			<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
-				{architecture.map((item) => (
-					<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>{item}</li>
-				))}
-			</ul>
-		</section>
-	)}
+	{
+		architecture.length > 0 && (
+			<section id="project-architecture" class="mt-16">
+				<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>
+					— ARQUITECTURA
+				</p>
+				<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>
+					Arquitectura
+				</h2>
+				<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
+					{architecture.map((item) => (
+						<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>
+							{item}
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
 
 	<!-- Challenges -->
-	{challenges.length > 0 && (
-		<section id="project-challenges" class="mt-16">
-			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— RETOS Y DECISIONES</p>
-			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Retos y decisiones</h2>
-			<div class="grid gap-4 sm:grid-cols-2">
-				{challenges.map((challenge) => (
-					<article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5" data-reveal>
-						<h3 class="text-base font-medium text-[#2d5d54]">{challenge.title}</h3>
-						<p class="mt-2 text-sm text-gray-600 leading-relaxed">{challenge.description}</p>
-					</article>
-				))}
-			</div>
-		</section>
-	)}
+	{
+		challenges.length > 0 && (
+			<section id="project-challenges" class="mt-16">
+				<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>
+					— RETOS Y DECISIONES
+				</p>
+				<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>
+					Retos y decisiones
+				</h2>
+				<div class="grid gap-4 sm:grid-cols-2">
+					{challenges.map((challenge) => (
+						<article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5" data-reveal>
+							<h3 class="text-base font-medium text-[#2d5d54]">{challenge.title}</h3>
+							<p class="mt-2 text-sm text-gray-600 leading-relaxed">{challenge.description}</p>
+						</article>
+					))}
+				</div>
+			</section>
+		)
+	}
 
 	<!-- Outcomes -->
-	{outcomes.length > 0 && (
-		<section id="project-outcomes" class="mt-16">
-			<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>— RESULTADOS</p>
-			<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>Resultados</h2>
-			<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
-				{outcomes.map((item) => (
-					<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>{item}</li>
-				))}
-			</ul>
-		</section>
-	)}
-
+	{
+		outcomes.length > 0 && (
+			<section id="project-outcomes" class="mt-16">
+				<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-3" data-reveal>
+					— RESULTADOS
+				</p>
+				<h2 class="codec-pro text-3xl font-medium mb-5 max-[640px]:text-2xl" data-reveal>
+					Resultados
+				</h2>
+				<ul class="flex flex-col gap-3 list-disc pl-5 marker:text-[#2d5d54]">
+					{outcomes.map((item) => (
+						<li class="text-lg text-gray-600 leading-relaxed max-[640px]:text-base" data-reveal>
+							{item}
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
 </main>
 
 <script>
@@ -211,18 +300,18 @@ const {
 
 	// Initial states — visibility:hidden set in CSS, autoAlpha manages both
 	gsap.set("#project-eyebrow", { y: 10 });
-	gsap.set("#project-title",   { y: 18 });
-	gsap.set("#project-techs",   { y: 10 });
-	gsap.set("#project-meta",    { y: 10 });
-	gsap.set("#project-ctas",    { y: 10 });
+	gsap.set("#project-title", { y: 18 });
+	gsap.set("#project-techs", { y: 10 });
+	gsap.set("#project-meta", { y: 10 });
+	gsap.set("#project-ctas", { y: 10 });
 
 	const fadeUp = { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" };
 
-	gsap.to("#project-eyebrow", { ...fadeUp, delay: 0.1  });
-	gsap.to("#project-title",   { ...fadeUp, delay: 0.25 });
-	gsap.to("#project-techs",   { ...fadeUp, delay: 0.4  });
-	gsap.to("#project-meta",    { ...fadeUp, delay: 0.5  });
-	gsap.to("#project-ctas",    { ...fadeUp, delay: 0.6  });
+	gsap.to("#project-eyebrow", { ...fadeUp, delay: 0.1 });
+	gsap.to("#project-title", { ...fadeUp, delay: 0.25 });
+	gsap.to("#project-techs", { ...fadeUp, delay: 0.4 });
+	gsap.to("#project-meta", { ...fadeUp, delay: 0.5 });
+	gsap.to("#project-ctas", { ...fadeUp, delay: 0.6 });
 
 	// Scroll-revealed blocks (description, architecture, challenges, outcomes)
 	gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
@@ -251,7 +340,9 @@ const {
 	}
 
 	.project-img {
-		transition: transform 0.5s ease, filter 0.5s ease;
+		transition:
+			transform 0.5s ease,
+			filter 0.5s ease;
 		filter: grayscale(15%) contrast(97%);
 	}
 

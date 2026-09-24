@@ -1,12 +1,14 @@
 ---
-import {technologyGroups} from "../../../data/technologies";
+import { technologyGroups } from "../../../data/technologies";
 ---
 
-<div
-	id="technologies"
-	class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30"
->
-	<p id="technologies-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">— STACK</p>
+<div id="technologies" class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30">
+	<p
+		id="technologies-eyebrow"
+		class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2"
+	>
+		— STACK
+	</p>
 	<h2
 		id="technologies-title"
 		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl max-[460px]:px-4"
@@ -18,12 +20,14 @@ import {technologyGroups} from "../../../data/technologies";
 		{
 			technologyGroups.map((group) => (
 				<div class="flex flex-col items-center gap-4 w-full">
-					<h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase">{group.name}</h3>
+					<h3 class="text-xs font-semibold tracking-widest text-gray-400 uppercase">
+						{group.name}
+					</h3>
 					<div class="flex items-start justify-center flex-wrap gap-5">
 						{group.items.map((tech) => (
 							<div class="tech-card group flex flex-col items-center justify-center gap-3 p-4 w-36 h-36 sm:w-40 sm:h-40 cursor-default bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-[#2d5d54]/20 transition-[box-shadow,border-color] duration-300">
 								<div class="transition-transform duration-300 group-hover:scale-110">
-									<div set:html={tech.icon}/>
+									<div set:html={tech.icon} />
 								</div>
 								<span class="transition-colors duration-300 text-sm font-medium text-black/70 group-hover:text-[#2d5d54] rubik text-center leading-tight">
 									{tech.name}
@@ -51,29 +55,30 @@ import {technologyGroups} from "../../../data/technologies";
 
 <script>
 	import gsap from "gsap";
-	import {ScrollTrigger} from "gsap/ScrollTrigger";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const headTrigger = {trigger: "#technologies", start: "top 80%"};
-	const headTo = {autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out"};
+	const headTrigger = { trigger: "#technologies", start: "top 80%" };
+	const headTo = { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out" };
 
-	gsap.set("#technologies-eyebrow", {scale: 0, y: 20});
-	gsap.set("#technologies-title", {scale: 0, y: 20});
+	gsap.set("#technologies-eyebrow", { scale: 0, y: 20 });
+	gsap.set("#technologies-title", { scale: 0, y: 20 });
 
-	gsap.to("#technologies-eyebrow", {...headTo, scrollTrigger: headTrigger});
-	gsap.to("#technologies-title", {...headTo, delay: 0.15, scrollTrigger: headTrigger});
+	gsap.to("#technologies-eyebrow", { ...headTo, scrollTrigger: headTrigger });
+	gsap.to("#technologies-title", { ...headTo, delay: 0.15, scrollTrigger: headTrigger });
 
-	gsap.set(".tech-card", {scale: 0, autoAlpha: 0});
+	gsap.set(".tech-card", { scale: 0, autoAlpha: 0 });
 
 	ScrollTrigger.batch(".tech-card", {
 		start: "top 95%",
-		onEnter: batch => gsap.to(batch, {
-			autoAlpha: 1,
-			scale: 1,
-			duration: 0.4,
-			ease: "back.out",
-			stagger: 0.07,
-		}),
+		onEnter: (batch) =>
+			gsap.to(batch, {
+				autoAlpha: 1,
+				scale: 1,
+				duration: 0.4,
+				ease: "back.out",
+				stagger: 0.07,
+			}),
 	});
 </script>

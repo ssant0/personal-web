@@ -2,26 +2,26 @@
 import Layout from "../../layouts/Layout.astro";
 import ProjectPage from "../../views/projects/ProjectPage.astro";
 
-import {allProjects} from '../../data/allProjects';
-import {type Project} from '../../types/Project';
+import { allProjects } from "../../data/allProjects";
+import { type Project } from "../../types/Project";
 
 export async function getStaticPaths() {
 	return allProjects.map((project: Project) => {
 		return {
-			params: {project: project.title.replaceAll(' ', '-').replaceAll('.', '-').toLowerCase()},
-			props: {project: project},
+			params: { project: project.title.replaceAll(" ", "-").replaceAll(".", "-").toLowerCase() },
+			props: { project: project },
 		};
 	});
 }
 
-const {project} = Astro.props;
+const { project } = Astro.props;
 ---
 
 <Layout
 	title={`Proyecto | ${project.title}`}
 	metaTitle={`Proyecto | ${project.title}`}
 	description={project.longDescription}
-	keywords={project.keywords.join(', ')}
+	keywords={project.keywords.join(", ")}
 >
-	<ProjectPage {...project}/>
+	<ProjectPage {...project} />
 </Layout>

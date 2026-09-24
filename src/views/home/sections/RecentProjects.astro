@@ -1,18 +1,18 @@
 ---
 import ProjectCard from "../components/ProjectCard.astro";
-import {allProjects} from "../../../data/allProjects";
+import { allProjects } from "../../../data/allProjects";
 ---
 
-<div
-	id="recent-projects"
-	class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30"
->
-	<p id="recent-projects-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">—
-		PORTAFOLIO</p>
+<div id="recent-projects" class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30">
+	<p
+		id="recent-projects-eyebrow"
+		class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2"
+	>
+		— PORTAFOLIO
+	</p>
 	<h2
 		id="recent-projects-title"
-		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl    max-[460px]:px-4"
-
+		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl max-[460px]:px-4"
 	>
 		Proyectos
 	</h2>
@@ -48,31 +48,32 @@ import {allProjects} from "../../../data/allProjects";
 
 <script>
 	import gsap from "gsap";
-	import {ScrollTrigger} from "gsap/ScrollTrigger";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	const headTrigger = {trigger: "#recent-projects", start: "top 80%"};
-	const headTo = {autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out"};
+	const headTrigger = { trigger: "#recent-projects", start: "top 80%" };
+	const headTo = { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out" };
 
-	gsap.set("#recent-projects-eyebrow", {scale: 0, y: 20});
-	gsap.set("#recent-projects-title", {scale: 0, y: 20});
+	gsap.set("#recent-projects-eyebrow", { scale: 0, y: 20 });
+	gsap.set("#recent-projects-title", { scale: 0, y: 20 });
 
-	gsap.to("#recent-projects-eyebrow", {...headTo, scrollTrigger: headTrigger});
-	gsap.to("#recent-projects-title", {...headTo, delay: 0.15, scrollTrigger: headTrigger});
+	gsap.to("#recent-projects-eyebrow", { ...headTo, scrollTrigger: headTrigger });
+	gsap.to("#recent-projects-title", { ...headTo, delay: 0.15, scrollTrigger: headTrigger });
 
-	gsap.set(".card-project", {scale: 0, autoAlpha: 0});
+	gsap.set(".card-project", { scale: 0, autoAlpha: 0 });
 
 	ScrollTrigger.batch(".card-project", {
 		start: "top 95%",
-		onEnter: cards => gsap.to(cards, {
-			autoAlpha: 1,
-			scale: 1,
-			duration: 0.5,
-			ease: "back.out",
-			stagger: 0.1,
-			clearProps: "transform",
-			onComplete: () => cards.forEach(card => card.classList.add("card-ready")),
-		}),
+		onEnter: (cards) =>
+			gsap.to(cards, {
+				autoAlpha: 1,
+				scale: 1,
+				duration: 0.5,
+				ease: "back.out",
+				stagger: 0.1,
+				clearProps: "transform",
+				onComplete: () => cards.forEach((card) => card.classList.add("card-ready")),
+			}),
 	});
 </script>

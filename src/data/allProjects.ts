@@ -5,7 +5,7 @@ import labstudiomedia from "../assets/img/labstudiomedia.png";
 import cocinasmodulares from "../assets/img/cocinasmodulares.png";
 import cybercafe10m from "../assets/img/cybercafe10m.png";
 import cuciiOnline from "../assets/img/cucii-online.png";
-import type {Project} from "../types/Project";
+import type { Project } from "../types/Project";
 
 export const allProjects: Project[] = [
 	{
@@ -20,7 +20,16 @@ export const allProjects: Project[] = [
 		liveLink: "https://jackpot-7st.pages.dev/",
 		ctaLabel: "Ver demo",
 		repoPrivate: true,
-		technologies: ["Java", "Spring Boot", "PostgreSQL", "JWT", "OpenAPI", "Astro", "Docker", "Caddy"],
+		technologies: [
+			"Java",
+			"Spring Boot",
+			"PostgreSQL",
+			"JWT",
+			"OpenAPI",
+			"Astro",
+			"Docker",
+			"Caddy",
+		],
 		architecture: [
 			"API-first / contract-first, con contrato OpenAPI 3.1 como fuente de verdad.",
 			"Autenticación stateless con JWT HS256 y doble transporte: header Authorization o cookie HttpOnly.",
@@ -95,8 +104,7 @@ export const allProjects: Project[] = [
 			},
 			{
 				title: "Comunicación profesional",
-				description:
-					"Integré correo corporativo por SMTP/IMAP con plantillas de correo propias.",
+				description: "Integré correo corporativo por SMTP/IMAP con plantillas de correo propias.",
 			},
 		],
 		outcomes: [
@@ -172,7 +180,15 @@ export const allProjects: Project[] = [
 		image: klyn,
 		liveLink: "https://klyn.com.mx/",
 		repoLink: "https://github.com/ssant0/klyn-web",
-		technologies: ["Astro", "Bootstrap 5", "CSS", "Google Analytics", "Facebook Pixel", "GTM", "Cloudflare"],
+		technologies: [
+			"Astro",
+			"Bootstrap 5",
+			"CSS",
+			"Google Analytics",
+			"Facebook Pixel",
+			"GTM",
+			"Cloudflare",
+		],
 		architecture: [
 			"Astro + Bootstrap 5 desplegado en Cloudflare Pages con HTTPS automático.",
 			"Headers de seguridad personalizados y CDN global.",
@@ -190,9 +206,7 @@ export const allProjects: Project[] = [
 					"Desplegué en Cloudflare aprovechando HTTPS automático, headers de seguridad y CDN global.",
 			},
 		],
-		outcomes: [
-			"Sitio corporativo en producción con analítica avanzada y entrega global.",
-		],
+		outcomes: ["Sitio corporativo en producción con analítica avanzada y entrega global."],
 		keywords: [
 			"Astro",
 			"Bootstrap 5",
@@ -215,7 +229,15 @@ export const allProjects: Project[] = [
 		image: labstudiomedia,
 		liveLink: "https://labstudiomedia.com/",
 		repoLink: "https://github.com/ssant0/labstudio-landing",
-		technologies: ["Astro", "TypeScript", "Bootstrap", "CSS", "Google Analytics", "AOS", "Cloudflare Pages"],
+		technologies: [
+			"Astro",
+			"TypeScript",
+			"Bootstrap",
+			"CSS",
+			"Google Analytics",
+			"AOS",
+			"Cloudflare Pages",
+		],
 		architecture: [
 			"Astro + TypeScript + Bootstrap para máximo rendimiento.",
 			"Cloudflare para dominio, CDN y Pages.",
@@ -228,9 +250,7 @@ export const allProjects: Project[] = [
 					"Arquitectura moderna con Astro para máximo rendimiento, en colaboración con el equipo de diseño.",
 			},
 		],
-		outcomes: [
-			"Sitio corporativo en producción para una agencia de marketing.",
-		],
+		outcomes: ["Sitio corporativo en producción para una agencia de marketing."],
 		keywords: [
 			"Astro",
 			"TypeScript",
@@ -266,9 +286,7 @@ export const allProjects: Project[] = [
 					"Migré la base de vanilla JS a Astro para mejorar rendimiento y mantenibilidad, integrando Google Maps.",
 			},
 		],
-		outcomes: [
-			"Sitio modernizado con mejor rendimiento y mantenibilidad.",
-		],
+		outcomes: ["Sitio modernizado con mejor rendimiento y mantenibilidad."],
 		keywords: [
 			"Astro",
 			"Bootstrap 5",
@@ -303,9 +321,7 @@ export const allProjects: Project[] = [
 					"Diseño responsive con foco en elegancia y conversión, optimizando imágenes profesionales.",
 			},
 		],
-		outcomes: [
-			"Sitio corporativo responsive en producción.",
-		],
+		outcomes: ["Sitio corporativo responsive en producción."],
 		keywords: [
 			"HTML",
 			"CSS",

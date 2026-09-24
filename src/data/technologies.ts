@@ -34,42 +34,38 @@ export const technologyGroups: TechnologyGroup[] = [
 	{
 		name: "Backend",
 		items: [
-			{name: "Java", icon: processIcon(java)},
-			{name: "Spring Boot", icon: processIcon(spring)},
+			{ name: "Java", icon: processIcon(java) },
+			{ name: "Spring Boot", icon: processIcon(spring) },
 		],
 	},
 	{
 		name: "Bases de datos",
-		items: [
-			{name: "PostgreSQL", icon: processIcon(postgresql)},
-		],
+		items: [{ name: "PostgreSQL", icon: processIcon(postgresql) }],
 	},
 	{
 		name: "Infra & DevOps",
 		items: [
-			{name: "Docker", icon: processIcon(docker)},
-			{name: "Linux", icon: processIcon(linux)},
+			{ name: "Docker", icon: processIcon(docker) },
+			{ name: "Linux", icon: processIcon(linux) },
 		],
 	},
 	{
 		name: "Frontend",
 		items: [
-			{name: "Angular", icon: processIcon(angular)},
-			{name: "TypeScript", icon: processIcon(typescript)},
-			{name: "JavaScript", icon: processIcon(js)},
+			{ name: "Angular", icon: processIcon(angular) },
+			{ name: "TypeScript", icon: processIcon(typescript) },
+			{ name: "JavaScript", icon: processIcon(js) },
 		],
 	},
 	{
 		name: "Fundamentos web",
 		items: [
-			{name: "HTML", icon: processIcon(html)},
-			{name: "CSS", icon: processIcon(css)},
+			{ name: "HTML", icon: processIcon(html) },
+			{ name: "CSS", icon: processIcon(css) },
 		],
 	},
 	{
 		name: "Tooling",
-		items: [
-			{name: "Astro", icon: processIcon(astro)},
-		],
+		items: [{ name: "Astro", icon: processIcon(astro) }],
 	},
 ];

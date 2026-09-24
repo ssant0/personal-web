@@ -1,10 +1,10 @@
 ---
 const links = [
-	{id: "intro", label: "Inicio"},
-	{id: "recent-projects", label: "Proyectos"},
-	{id: "about", label: "Sobre mí"},
-	{id: "experience", label: "Experiencia"},
-	{id: "contact", label: "Contacto"},
+	{ id: "intro", label: "Inicio" },
+	{ id: "recent-projects", label: "Proyectos" },
+	{ id: "about", label: "Sobre mí" },
+	{ id: "experience", label: "Experiencia" },
+	{ id: "contact", label: "Contacto" },
 ];
 ---
 
@@ -50,8 +50,8 @@ const links = [
 		<a
 			href="#intro"
 			data-target="intro"
-			class="codec-pro font-medium text-lg text-[#2d5d54] tracking-tight"
-		>Manuel Samaniego</a>
+			class="codec-pro font-medium text-lg text-[#2d5d54] tracking-tight">Manuel Samaniego</a
+		>
 
 		<button
 			id="menu-toggle"
@@ -74,7 +74,9 @@ const links = [
 		hidden
 		class="min-[660px]:hidden absolute top-full left-0 right-0 px-3 pt-2"
 	>
-		<div class="bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-2xl shadow-lg p-2 flex flex-col">
+		<div
+			class="bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-2xl shadow-lg p-2 flex flex-col"
+		>
 			{
 				links.map((link) => (
 					<a
@@ -97,8 +99,13 @@ const links = [
 
 <noscript>
 	<style>
-		#mobile-bar { display: none !important; }
-		#links-container { display: flex !important; flex-wrap: wrap; }
+		#mobile-bar {
+			display: none !important;
+		}
+		#links-container {
+			display: flex !important;
+			flex-wrap: wrap;
+		}
 	</style>
 </noscript>
 
@@ -118,11 +125,14 @@ const links = [
 	setNavHeight();
 
 	// Animación de entrada (solo desktop; el menú móvil se controla con toggle)
-	desktopLinks.forEach((link) => gsap.set(link, {scale: 0}));
+	desktopLinks.forEach((link) => gsap.set(link, { scale: 0 }));
 	gsap.to("#links-container", {
-		autoAlpha: 1, duration: 0.5, ease: "power2.out", onComplete: () => {
+		autoAlpha: 1,
+		duration: 0.5,
+		ease: "power2.out",
+		onComplete: () => {
 			desktopLinks.forEach((link, i) => {
-				gsap.to(link, {autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.12});
+				gsap.to(link, { autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.12 });
 			});
 		},
 	});
@@ -136,7 +146,11 @@ const links = [
 		menu.hidden = false;
 		toggle.setAttribute("aria-expanded", "true");
 		toggle.setAttribute("aria-label", "Cerrar menú");
-		gsap.fromTo(menu, {autoAlpha: 0, y: -8}, {autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out"});
+		gsap.fromTo(
+			menu,
+			{ autoAlpha: 0, y: -8 },
+			{ autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out" }
+		);
 		menu.querySelector<HTMLElement>("a")?.focus();
 	};
 
@@ -146,14 +160,20 @@ const links = [
 		toggle.setAttribute("aria-expanded", "false");
 		toggle.setAttribute("aria-label", "Abrir menú");
 		gsap.to(menu, {
-			autoAlpha: 0, y: -8, duration: 0.2, ease: "power2.in",
-			onComplete: () => { menu.hidden = true; },
+			autoAlpha: 0,
+			y: -8,
+			duration: 0.2,
+			ease: "power2.in",
+			onComplete: () => {
+				menu.hidden = true;
+			},
 		});
 		if (returnFocus) toggle.focus();
 	};
 
 	toggle?.addEventListener("click", () => {
-		if (isMenuOpen()) closeMenu(); else openMenu();
+		if (isMenuOpen()) closeMenu();
+		else openMenu();
 	});
 
 	// Cerrar con Escape y devolver el foco al botón
@@ -200,16 +220,19 @@ const links = [
 	});
 
 	// Observer — marca el link activo según la sección visible
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach((entry) => {
-			if (!entry.isIntersecting) return;
-			const links = sectionLinksMap.get(entry.target);
-			if (!links) return;
-			// Prefiere el enlace visible (desktop, o móvil si el menú está abierto)
-			const visible = links.find((l) => l.offsetParent !== null);
-			if (visible) setActive(visible);
-		});
-	}, {root: null, rootMargin: "0px", threshold: 0.25});
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				const links = sectionLinksMap.get(entry.target);
+				if (!links) return;
+				// Prefiere el enlace visible (desktop, o móvil si el menú está abierto)
+				const visible = links.find((l) => l.offsetParent !== null);
+				if (visible) setActive(visible);
+			});
+		},
+		{ root: null, rootMargin: "0px", threshold: 0.25 }
+	);
 
 	const startObserver = () => {
 		sectionLinksMap.forEach((_, section) => observer.observe(section));
@@ -221,7 +244,7 @@ const links = [
 		const heading = section.querySelector<HTMLElement>("h1, h2, h3");
 		if (!heading) return;
 		heading.setAttribute("tabindex", "-1");
-		heading.focus({preventScroll: true});
+		heading.focus({ preventScroll: true });
 	};
 
 	// Scroll suave al hacer click — respeta scroll-margin-top de cada sección
@@ -242,9 +265,9 @@ const links = [
 			observer.disconnect();
 
 			if (targetId === "intro") {
-				window.scrollTo({top: 0, behavior: "smooth"});
+				window.scrollTo({ top: 0, behavior: "smooth" });
 			} else {
-				section.scrollIntoView({behavior: "smooth", block: "start"});
+				section.scrollIntoView({ behavior: "smooth", block: "start" });
 			}
 			focusSection(section);
 
@@ -282,7 +305,9 @@ const links = [
 		height: 2px;
 		border-radius: 2px;
 		background-color: #2d5d54;
-		transition: transform 0.3s ease, opacity 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
 	}
 
 	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(1) {

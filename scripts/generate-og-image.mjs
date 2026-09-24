@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import {mkdir} from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 
 const W = 1200;
 const H = 630;
@@ -23,6 +23,6 @@ const svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http
   <rect x="80" y="512" width="120" height="6" rx="3" fill="#2d5d54"/>
 </svg>`;
 
-await mkdir("public", {recursive: true});
+await mkdir("public", { recursive: true });
 await sharp(Buffer.from(svg)).png().toFile("public/og-image.png");
 console.log("✓ public/og-image.png generado");

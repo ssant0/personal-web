@@ -4,5 +4,6 @@ node_modules/
 .agents/
 .idea/
 pnpm-lock.yaml
+skills-lock.json
 public/
 src/assets/

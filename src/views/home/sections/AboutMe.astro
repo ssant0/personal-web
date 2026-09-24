@@ -1,11 +1,11 @@
 ---
+
 ---
 
-<div
-	id="about"
-	class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6"
->
-	<p id="about-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">— SOBRE MÍ</p>
+<div id="about" class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6">
+	<p id="about-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">
+		— SOBRE MÍ
+	</p>
 	<h2
 		id="about-title"
 		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl"
@@ -15,24 +15,20 @@
 
 	<div id="about-body" class="mt-12 max-w-2xl w-full flex flex-col gap-5">
 		<p class="text-lg text-gray-600 leading-relaxed max-[660px]:text-base">
-			Soy Manuel Samaniego, ingeniero de software full stack con foco en
-			backend. Mi stack principal es Java y Spring Boot sobre PostgreSQL,
-			con frontend en Angular, Astro y TypeScript.
+			Soy Manuel Samaniego, ingeniero de software full stack con foco en backend. Mi stack principal
+			es Java y Spring Boot sobre PostgreSQL, con frontend en Angular, Astro y TypeScript.
 		</p>
 		<p class="text-lg text-gray-600 leading-relaxed max-[660px]:text-base">
-			Me muevo cómodo llevando una aplicación de la base de datos a
-			producción: diseño de APIs, autenticación, despliegue en Linux con
-			Docker y administración de servidores.
+			Me muevo cómodo llevando una aplicación de la base de datos a producción: diseño de APIs,
+			autenticación, despliegue en Linux con Docker y administración de servidores.
 		</p>
 		<p class="text-lg text-gray-600 leading-relaxed max-[660px]:text-base">
-			Combino el desarrollo de producto propio con el trabajo en TI de una
-			institución educativa, donde administro infraestructura y construyo
-			herramientas internas. Aprendo haciendo y me mueve ver el código
-			resolver problemas reales.
+			Combino el desarrollo de producto propio con el trabajo en TI de una institución educativa,
+			donde administro infraestructura y construyo herramientas internas. Aprendo haciendo y me
+			mueve ver el código resolver problemas reales.
 		</p>
 		<p class="text-lg text-gray-600 leading-relaxed max-[660px]:text-base">
-			Disponible para posiciones remotas, híbridas o presenciales, con
-			apertura a reubicación.
+			Disponible para posiciones remotas, híbridas o presenciales, con apertura a reubicación.
 		</p>
 	</div>
 </div>
@@ -60,10 +56,10 @@
 	const fadeUp = { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" };
 
 	gsap.set("#about-eyebrow", { y: 10 });
-	gsap.set("#about-title",   { y: 18 });
+	gsap.set("#about-title", { y: 18 });
 
 	gsap.to("#about-eyebrow", { ...fadeUp, scrollTrigger: headTrigger });
-	gsap.to("#about-title",   { ...fadeUp, delay: 0.15, scrollTrigger: headTrigger });
+	gsap.to("#about-title", { ...fadeUp, delay: 0.15, scrollTrigger: headTrigger });
 
 	// Párrafos con stagger manual para que entren en cascada
 	const bodyTrigger = { trigger: "#about-body", start: "top 85%" };

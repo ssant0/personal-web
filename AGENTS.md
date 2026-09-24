@@ -50,19 +50,23 @@ scripts/
 
 ```html
 <!-- Eyebrow label (above every section h2) -->
-<p class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2
+<p
+	class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2
             "
-  >— LABEL</p>
+>
+	— LABEL
+</p>
 
 <!-- Tech pill -->
 <span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2 py-0.5 rounded-full font-medium">
-  Tech
+	Tech
 </span>
 ```
 
 ## Adding Content
 
 **New project** — add entry to `src/data/allProjects.ts`:
+
 - Required: `title`, `shortDescription`, `longDescription`, `role`, `image`, `liveLink`, `technologies[]`, `keywords[]`
 - Optional: `status` (badge on the card, e.g. "En desarrollo · próximo a producción"), `ctaLabel` (defaults to "Visitar proyecto"; use e.g. "Ver demo"), `repoLink`, `repoPrivate` (renders a non-link "Código privado" badge), `architecture[]`, `challenges[]` (`{ title, description }`), `outcomes[]`
 - `ProjectPage.astro` renders Arquitectura / Retos y decisiones / Resultados sections only when those arrays are non-empty.
@@ -72,6 +76,7 @@ scripts/
 **New experience** — add entry to `src/data/experience.ts` (`ExperienceItem`): `role`, `organization`, `period`, and optional `employmentType`, `location`, `modality`, plus `bullets[]`. Rendered in the `Experience` section; keep reverse-chronological order.
 
 **New technology** — add an item (`name` + inline SVG `icon`) inside the correct group of `src/data/technologies.ts` (`technologyGroups`), rendered by `Technologies.astro` with a subtitle per group.
+
 - Groups: **Backend** (Java, Spring Boot) · **Bases de datos** (PostgreSQL) · **Infra & DevOps** (Docker, Linux) · **Frontend** (Angular, TypeScript, JavaScript) · **Fundamentos web** (HTML, CSS) · **Tooling** (Astro).
 - Icons are colorized brand SVGs. Prefer `https://cdn.simpleicons.org/<slug>` (returns a colored `<svg>`). `processIcon` strips `<?xml>`, comments and `<title>`, adds `class="w-12 h-12"` + `aria-hidden`, and removes `width`/`height`.
 - Custom SVGs often carry whitespace around the artwork. Fix by computing the real bounding box from the polygon/path coordinates and setting `viewBox="minX minY width height"` to crop tightly.

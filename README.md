@@ -47,10 +47,10 @@ Incluye animaciones de scroll con GSAP, páginas de detalle de proyecto autogene
 
 ## Requisitos
 
-| Herramienta | Versión |
-|---|---|
-| Node.js | `>= 20.x` |
-| pnpm | `>= 9.x` |
+| Herramienta | Versión   |
+| ----------- | --------- |
+| Node.js     | `>= 20.x` |
+| pnpm        | `>= 9.x`  |
 
 ---
 
@@ -83,14 +83,14 @@ Abre [http://localhost:4321](http://localhost:4321) en el navegador.
 
 ## Scripts
 
-| Comando | Descripción |
-|---|---|
-| `pnpm dev` | Servidor de desarrollo (accesible en la red) |
-| `pnpm build` | Build de producción → `dist/` |
-| `pnpm preview` | Previsualiza el build de producción |
-| `pnpm check` | Verificación de tipos sobre los archivos `.astro` (`astro check`) |
-| `pnpm format` | Formatea el proyecto con Prettier |
-| `pnpm format:check` | Comprueba el formato sin escribir cambios |
+| Comando             | Descripción                                                       |
+| ------------------- | ----------------------------------------------------------------- |
+| `pnpm dev`          | Servidor de desarrollo (accesible en la red)                      |
+| `pnpm build`        | Build de producción → `dist/`                                     |
+| `pnpm preview`      | Previsualiza el build de producción                               |
+| `pnpm check`        | Verificación de tipos sobre los archivos `.astro` (`astro check`) |
+| `pnpm format`       | Formatea el proyecto con Prettier                                 |
+| `pnpm format:check` | Comprueba el formato sin escribir cambios                         |
 
 ---
 
