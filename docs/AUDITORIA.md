@@ -42,17 +42,17 @@
 
 - ✅ **ProjectCard** `image: any` → `ImageMetadata`
 - ✅ **ProjectPage**: secciones semánticas `<section>` + `data-reveal`
-- ☐ Semántica de secciones del home (`<div id>` → `<section aria-labelledby>`)
-- ☐ Email con fallback sin JS (`href=""` + hidratación por JS)
-- ☐ `ScrollTrigger.registerPlugin` duplicado → helper
-- ☐ `<style is:global>` duplicado → `global.css`
+- ✅ Semántica de secciones del home (`<div id>` → `<section aria-labelledby>`)
+- ✅ Email server-side con `mailto:` real (se eliminó la hidratación JS + base64 y `utils/email.ts`)
+- ✅ `ScrollTrigger.registerPlugin` duplicado → helper `src/utils/gsap.ts`
+- ✅ `<style is:global>` duplicado → `global.css` (y corregido `body > main` en vez de `:first-child`)
 - ✅ Metadata de `package.json` (`name`, `version`, `description`, `author`)
 - ✅ `astro check` + Prettier (`.prettierrc`, `pnpm check` / `pnpm format`); ESLint y CI quedaron fuera por decisión
 - ➖ Comprimir imágenes fuente — se decidió no tocar los binarios (Astro ya optimiza en build)
-- ☐ `will-change: transform` permanente
+- ➖ `will-change: transform` permanente — se mantiene: es parte deliberada del patrón anti-FOUC
 - ✅ `og:*` / `twitter:*` / `robots.txt` / JSON-LD `Person`
-- ☐ `alt` descriptivos y `keywords[]` de proyectos recortados
-- ☐ Mover `AUDITORIA.md` a `/docs` o presentarlo como QA report
+- ✅ `keywords[]` de proyectos recortados (sin términos comerciales); `alt` se mantiene descriptivo y genérico
+- ✅ `AUDITORIA.md` y `PLAN-REACTIVACION.md` movidos a `/docs`
 
 ---
 

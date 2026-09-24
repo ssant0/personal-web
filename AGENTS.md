@@ -26,7 +26,7 @@ src/
   data/          # allProjects.ts, experience.ts, technologies.ts, socialLinks.ts
   styles/        # global.css
   types/         # Project.ts
-  utils/         # email.ts
+  utils/         # gsap.ts — GSAP + ScrollTrigger (plugin registrado una vez)
 public/
   css/           # fonts.css
   robots.txt     # sitemap reference
@@ -40,7 +40,7 @@ scripts/
 - Brand teal: `#2d5d54` — hover: `#3e8b7d`
 - Background: `linear-gradient(170deg, #daeee9 0%, #f1f2f5 14%) fixed`
 - Fonts: `.codec-pro` (headings) / `.rubik` (body)
-- Animations: GSAP 3. FOUC prevention pattern: add `visibility: hidden` in `<style>` for every animated element, then use `gsap.set()` for initial scale/y + `gsap.to()` with `autoAlpha: 1` (never `gsap.from()` with `opacity`). `autoAlpha` manages both `opacity` and `visibility` together.
+- Animations: GSAP 3. FOUC prevention pattern: add `visibility: hidden` in `<style>` for every animated element, then use `gsap.set()` for initial scale/y + `gsap.to()` with `autoAlpha: 1` (never `gsap.from()` with `opacity`). `autoAlpha` manages both `opacity` and `visibility` together. Import `gsap` (and `ScrollTrigger` where used) from `src/utils/gsap.ts`, which registers the plugin once — do not import from `gsap` directly in scripts.
   - **Above-fold / on-load** (`Intro`, `NavBar`, `links`): CSS `visibility:hidden` on elements → `gsap.set(el, { scale:0 })` → `gsap.to(el, { autoAlpha:1, scale:1, duration:0.4, ease:"back.out", delay })`. Delays increment by 0.2s.
   - **Scroll-triggered headings** (`RecentProjects`, `AboutMe`, `Experience`, `Technologies`, `Contact`): CSS `visibility:hidden` on heading elements → `gsap.set()` initial state → `gsap.to()` with `autoAlpha:1` + `scrollTrigger: { trigger: "#section-id", start: "top 80%" }`. Eyebrow at delay 0, h2 at 0.15s, body copy at 0.3s.
   - **Scroll-triggered card grids** (`RecentProjects`, `Experience`, `Technologies`, `Contact`): `gsap.set(".card", { scale:0, autoAlpha:0 })` + `ScrollTrigger.batch(".card", { start:"top 95%", onEnter: batch => gsap.to(batch, { autoAlpha:1, scale:1, stagger:0.07 }) })`. **Never use `gsap.from` + stagger + a single ScrollTrigger for grids** — if the trigger misfires, all elements stay permanently invisible.
@@ -122,4 +122,4 @@ Google Analytics 4 (`G-G40F72XVS0`) is injected as the first element in `<head>`
   - The mobile toggle manages `aria-expanded`/`aria-controls`, closes on `Escape` (returning focus to the button), on outside click and on resize to desktop; the icon morphs via `.menu-toggle[aria-expanded="true"] .menu-bar`.
   - A `<noscript>` block reveals `#links-container` and hides `#mobile-bar` so navigation works without JS.
   - New homepage section anchors must be added to the `scroll-margin-top: var(--nav-height)` selector in `global.css`; `--nav-height` is set by the NavBar script.
-- **Repo docs (root)**: `README.md` (overview + setup, ES), `AUDITORIA.md` (employability audit + execution tracker) and `PLAN-REACTIVACION.md` (study/refresh plan).
+- **Docs**: `README.md` and `AGENTS.md` at root; `docs/AUDITORIA.md` (employability audit + execution tracker) and `docs/PLAN-REACTIVACION.md` (study/refresh plan).

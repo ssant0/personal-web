@@ -2,7 +2,11 @@
 import { experience } from "../../../data/experience";
 ---
 
-<div id="experience" class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6">
+<section
+	id="experience"
+	aria-labelledby="experience-title"
+	class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6"
+>
 	<p
 		id="experience-eyebrow"
 		class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2"
@@ -44,7 +48,7 @@ import { experience } from "../../../data/experience";
 			))
 		}
 	</div>
-</div>
+</section>
 
 <style>
 	:global(.js) #experience-eyebrow,
@@ -78,10 +82,7 @@ import { experience } from "../../../data/experience";
 </style>
 
 <script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-	gsap.registerPlugin(ScrollTrigger);
+	import { gsap, ScrollTrigger } from "../../../utils/gsap";
 
 	const headTrigger = { trigger: "#experience", start: "top 80%" };
 	const headTo = { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out" };

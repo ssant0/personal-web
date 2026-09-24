@@ -109,7 +109,7 @@ src/
   data/          # allProjects.ts, experience.ts, technologies.ts, socialLinks.ts
   styles/        # global.css
   types/         # Project.ts
-  utils/         # email.ts
+  utils/         # gsap.ts (GSAP + ScrollTrigger registrados)
 public/
   css/           # fonts.css
 ```
@@ -137,8 +137,8 @@ Agrega una entrada dentro del grupo correcto en `src/data/technologies.ts` (Back
 ## Documentación
 
 - `AGENTS.md` — guía de arquitectura, sistema de diseño, patrones de animación y convenciones del proyecto.
-- `AUDITORIA.md` — auditoría de empleabilidad (hallazgos y estado de ejecución).
-- `PLAN-REACTIVACION.md` — plan de estudio y repaso técnico.
+- `docs/AUDITORIA.md` — auditoría de empleabilidad (hallazgos y estado de ejecución).
+- `docs/PLAN-REACTIVACION.md` — plan de estudio y repaso técnico.
 
 ---
 

@@ -120,8 +120,7 @@ const currentYear = new Date().getFullYear();
 						</svg>
 					</a>
 					<a
-						href=""
-						data-email-href
+						href={`mailto:${socialLinks.email}`}
 						rel="noopener noreferrer"
 						aria-label="Email"
 						class="hover:text-white transition-colors"
@@ -155,9 +154,6 @@ const currentYear = new Date().getFullYear();
 </footer>
 
 <script>
-	import { hydrateEmail } from "../../utils/email";
-	hydrateEmail();
-
 	document.querySelectorAll<HTMLAnchorElement>("[data-scroll]").forEach((link) => {
 		link.addEventListener("click", (e) => {
 			// Respeta clic con modificadores (abrir en pestaña nueva, etc.)

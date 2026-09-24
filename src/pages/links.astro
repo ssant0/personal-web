@@ -218,8 +218,7 @@ import { socialLinks } from "../data/socialLinks";
 
 				<!-- Email -->
 				<a
-					href=""
-					data-email-href
+					href={`mailto:${socialLinks.email}`}
 					class="link-card group w-full flex items-center gap-4 px-5 py-4 bg-white/80 backdrop-blur-sm border border-gray-200/60 rounded-2xl transition duration-300 hover:border-[#2d5d54]/40 hover:bg-white hover:shadow-md"
 				>
 					<div class="w-9 h-9 bg-[#2d5d54]/8 rounded-xl flex items-center justify-center shrink-0">
@@ -239,7 +238,7 @@ import { socialLinks } from "../data/socialLinks";
 					</div>
 					<div class="flex-1 min-w-0">
 						<p class="font-semibold text-sm leading-tight text-gray-800">Contacto</p>
-						<p class="text-gray-600 text-xs truncate" data-email-text></p>
+						<p class="text-gray-600 text-xs truncate">{socialLinks.email}</p>
 					</div>
 					<svg
 						class="shrink-0 text-[#2d5d54] opacity-50 group-hover:translate-x-1 group-hover:opacity-100 transition duration-300"
@@ -299,8 +298,6 @@ import { socialLinks } from "../data/socialLinks";
 
 <script>
 	import gsap from "gsap";
-	import { hydrateEmail } from "../utils/email";
-	hydrateEmail();
 
 	const baseTo = { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out" };
 

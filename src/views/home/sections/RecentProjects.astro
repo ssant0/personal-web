@@ -3,7 +3,11 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { allProjects } from "../../../data/allProjects";
 ---
 
-<div id="recent-projects" class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30">
+<section
+	id="recent-projects"
+	aria-labelledby="recent-projects-title"
+	class="flex flex-col items-center justify-center mt-72 max-[660px]:mt-30"
+>
 	<p
 		id="recent-projects-eyebrow"
 		class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2"
@@ -36,7 +40,7 @@ import { allProjects } from "../../../data/allProjects";
 			}
 		</div>
 	</div>
-</div>
+</section>
 
 <style>
 	:global(.js) #recent-projects-eyebrow,
@@ -47,10 +51,7 @@ import { allProjects } from "../../../data/allProjects";
 </style>
 
 <script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-	gsap.registerPlugin(ScrollTrigger);
+	import { gsap, ScrollTrigger } from "../../../utils/gsap";
 
 	const headTrigger = { trigger: "#recent-projects", start: "top 80%" };
 	const headTo = { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out" };

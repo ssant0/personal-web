@@ -2,8 +2,9 @@
 import { socialLinks } from "../../../data/socialLinks";
 ---
 
-<div
+<section
 	id="intro"
+	aria-labelledby="intro-title"
 	class="flex flex-col items-center justify-center mt-22
   w-[860px] max-[1080px]:w-[700px]
   max-[800px]:w-[580px]
@@ -46,6 +47,7 @@ import { socialLinks } from "../../../data/socialLinks";
 	</div>
 
 	<h1
+		id="intro-title"
 		class="pt-1 text-6xl codec-pro font-medium max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl"
 	>
 		Manuel Samaniego
@@ -69,8 +71,7 @@ import { socialLinks } from "../../../data/socialLinks";
 	<!-- Social links -->
 	<div class="flex pt-5 max-[660px]:pt-4 items-center gap-2 media-links">
 		<a
-			href=""
-			data-email-href
+			href={`mailto:${socialLinks.email}`}
 			aria-label="Email"
 			class="transition-colors duration-300 w-[44px] h-[44px] max-[800px]:w-[38px] max-[800px]:h-[38px] flex items-center justify-center border-solid rounded-xl border-[#2d5d54] border-2 p-2 hover:bg-[#2d5d54] hover:fill-white max-[382px]:w-[34px] max-[382px]:h-[34px]"
 		>
@@ -137,8 +138,7 @@ import { socialLinks } from "../../../data/socialLinks";
 	<!-- CTAs -->
 	<div id="intro-ctas" class="flex gap-3 pt-8 max-[550px]:flex-col max-[550px]:items-center">
 		<a
-			href=""
-			data-email-href
+			href={`mailto:${socialLinks.email}`}
 			class="cta-primary rounded-xl bg-[#2d5d54] hover:bg-[#2c7c6e] transition text-white px-7 py-3 flex gap-2 items-center max-[660px]:px-5"
 		>
 			<span class="text-lg max-[660px]:text-base max-[382px]:text-sm">Contáctame</span>
@@ -186,7 +186,7 @@ import { socialLinks } from "../../../data/socialLinks";
 			</div>
 		</a>
 	</div>
-</div>
+</section>
 
 <style>
 	:global(.js) .avatar-ring,
@@ -221,8 +221,6 @@ import { socialLinks } from "../../../data/socialLinks";
 
 <script>
 	import gsap from "gsap";
-	import { hydrateEmail } from "../../../utils/email";
-	hydrateEmail();
 
 	const baseTo = { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out" };
 

@@ -2,7 +2,11 @@
 
 ---
 
-<div id="about" class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6">
+<section
+	id="about"
+	aria-labelledby="about-title"
+	class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6"
+>
 	<p id="about-eyebrow" class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2">
 		— SOBRE MÍ
 	</p>
@@ -31,7 +35,7 @@
 			Disponible para posiciones remotas, híbridas o presenciales, con apertura a reubicación.
 		</p>
 	</div>
-</div>
+</section>
 
 <style>
 	:global(.js) #about-eyebrow,
@@ -47,10 +51,7 @@
 </style>
 
 <script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-	gsap.registerPlugin(ScrollTrigger);
+	import { gsap } from "../../../utils/gsap";
 
 	const headTrigger = { trigger: "#about", start: "top 80%" };
 	const fadeUp = { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" };

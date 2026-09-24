@@ -293,10 +293,7 @@ const {
 </main>
 
 <script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-	gsap.registerPlugin(ScrollTrigger);
+	import { gsap } from "../../utils/gsap";
 
 	// Initial states — visibility:hidden set in CSS, autoAlpha manages both
 	gsap.set("#project-eyebrow", { y: 10 });
@@ -367,17 +364,5 @@ const {
 
 	.cta-secondary:hover {
 		transform: scale(1.04);
-	}
-</style>
-
-<style is:global>
-	body {
-		min-height: 100svh;
-		display: flex;
-		flex-direction: column;
-	}
-
-	body > :first-child {
-		flex: 1;
 	}
 </style>

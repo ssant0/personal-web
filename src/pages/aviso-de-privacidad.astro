@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { socialLinks } from "../data/socialLinks";
 
 const lastUpdated = "21 de septiembre de 2026";
 ---
@@ -71,7 +72,7 @@ const lastUpdated = "21 de septiembre de 2026";
 					<li><span class="font-medium text-gray-700">Sitio web:</span> manuelsamaniego.com.mx</li>
 					<li>
 						<span class="font-medium text-gray-700">Correo de contacto:</span>
-						<span data-email-text></span>
+						{socialLinks.email}
 					</li>
 				</ul>
 				<p>
@@ -132,11 +133,10 @@ const lastUpdated = "21 de septiembre de 2026";
 					Si no deseas que tus datos sean tratados para las finalidades secundarias, puedes
 					manifestarlo escribiendo a
 					<a
-						href=""
-						data-email-href
-						data-email-text
+						href={`mailto:${socialLinks.email}`}
 						class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2"
-					></a>
+						>{socialLinks.email}</a
+					>
 					o instalando la extensión <a
 						href="https://tools.google.com/dlpage/gaoptout"
 						target="_blank"
@@ -164,11 +164,10 @@ const lastUpdated = "21 de septiembre de 2026";
 					<li>Usando extensiones de privacidad como uBlock Origin o similares.</li>
 					<li>
 						Enviando una solicitud de limitación al correo <a
-							href=""
-							data-email-href
-							data-email-text
+							href={`mailto:${socialLinks.email}`}
 							class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2"
-						></a>.
+							>{socialLinks.email}</a
+						>.
 					</li>
 				</ul>
 			</section>
@@ -229,11 +228,10 @@ const lastUpdated = "21 de septiembre de 2026";
 				<p class="mb-3">Para ejercer tus derechos ARCO, envía un correo a:</p>
 				<p class="mb-5">
 					<a
-						href=""
-						data-email-href
-						data-email-text
+						href={`mailto:${socialLinks.email}`}
 						class="text-[#2d5d54] hover:text-[#3e8b7d] underline decoration-dotted underline-offset-2 font-medium"
-					></a>
+						>{socialLinks.email}</a
+					>
 				</p>
 				<p class="mb-3">Tu solicitud debe incluir:</p>
 				<ul class="list-disc pl-6 flex flex-col gap-2 mb-3">
@@ -295,16 +293,6 @@ const lastUpdated = "21 de septiembre de 2026";
 	</main>
 
 	<style is:global>
-		body {
-			min-height: 100svh;
-			display: flex;
-			flex-direction: column;
-		}
-
-		body > :first-child {
-			flex: 1;
-		}
-
 		.js #aviso-back,
 		.js #aviso-eyebrow,
 		.js #aviso-title,
@@ -317,12 +305,7 @@ const lastUpdated = "21 de septiembre de 2026";
 	</style>
 
 	<script>
-		import gsap from "gsap";
-		import { ScrollTrigger } from "gsap/ScrollTrigger";
-		import { hydrateEmail } from "../utils/email";
-		hydrateEmail();
-
-		gsap.registerPlugin(ScrollTrigger);
+		import { gsap } from "../utils/gsap";
 
 		gsap.set("#aviso-back", { y: -8 });
 		gsap.set("#aviso-eyebrow", { y: 8 });
