@@ -1,0 +1,111 @@
+---
+import { experience } from "../../../data/experience";
+---
+
+<section
+	id="experience"
+	aria-labelledby="experience-title"
+	class="flex flex-col items-center justify-center mt-52 max-[660px]:mt-30 px-6"
+>
+	<p
+		id="experience-eyebrow"
+		class="text-xs font-semibold tracking-widest text-[#2d5d54] uppercase mb-2"
+	>
+		— TRAYECTORIA
+	</p>
+	<h2
+		id="experience-title"
+		class="pt-1 text-6xl text-center rubik max-[800px]:text-5xl max-[660px]:text-4xl max-[382px]:text-3xl"
+	>
+		Experiencia
+	</h2>
+
+	<div class="pt-10 flex flex-col items-center w-full gap-6">
+		{
+			experience.map((item) => (
+				<article class="exp-card w-[820px] max-[850px]:w-[620px] max-[660px]:w-full bg-white rounded-2xl border border-gray-100 shadow-sm px-8 py-7 max-[660px]:px-5 max-[660px]:py-6">
+					<header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+						<h3 class="text-xl font-medium text-[#2d5d54] max-[660px]:text-lg">{item.role}</h3>
+						<span class="text-xs font-semibold tracking-wide uppercase text-gray-400">
+							{item.period}
+						</span>
+					</header>
+					<p class="text-sm text-gray-500 mt-1">
+						{item.organization}
+						{item.employmentType ? ` · ${item.employmentType}` : ""}
+					</p>
+					{[item.location, item.modality].some(Boolean) && (
+						<p class="text-xs text-gray-400 mt-0.5">
+							{[item.location, item.modality].filter(Boolean).join(" · ")}
+						</p>
+					)}
+					<ul class="mt-4 flex flex-col gap-2 list-disc pl-5 marker:text-[#2d5d54]">
+						{item.bullets.map((bullet) => (
+							<li class="text-base text-gray-600 leading-relaxed max-[660px]:text-sm">{bullet}</li>
+						))}
+					</ul>
+				</article>
+			))
+		}
+	</div>
+</section>
+
+<style>
+	:global(.js) #experience-eyebrow,
+	:global(.js) #experience-title {
+		visibility: hidden;
+		will-change: transform;
+	}
+
+	.exp-card {
+		will-change: transform;
+		transition:
+			border-color 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.exp-card:hover {
+		border-color: rgba(45, 93, 84, 0.25);
+		box-shadow: 0 8px 24px rgba(45, 93, 84, 0.1);
+	}
+
+	.exp-card.card-ready {
+		transition:
+			transform 0.25s ease,
+			border-color 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.exp-card.card-ready:hover {
+		transform: translateY(-2px);
+	}
+</style>
+
+<script>
+	import { gsap, ScrollTrigger } from "../../../utils/gsap";
+
+	const headTrigger = { trigger: "#experience", start: "top 80%" };
+	const headTo = { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out" };
+
+	gsap.set("#experience-eyebrow", { scale: 0, y: 20 });
+	gsap.set("#experience-title", { scale: 0, y: 20 });
+
+	gsap.to("#experience-eyebrow", { ...headTo, scrollTrigger: headTrigger });
+	gsap.to("#experience-title", { ...headTo, delay: 0.15, scrollTrigger: headTrigger });
+
+	gsap.set(".exp-card", { scale: 0, autoAlpha: 0 });
+
+	ScrollTrigger.batch(".exp-card", {
+		start: "top 95%",
+		onEnter: (cards) =>
+			gsap.to(cards, {
+				autoAlpha: 1,
+				scale: 1,
+				duration: 0.4,
+				ease: "back.out",
+				stagger: 0.1,
+				clearProps: "transform",
+				onComplete: () => cards.forEach((card) => card.classList.add("card-ready")),
+			}),
+	});
+</script>

@@ -4,6 +4,16 @@ html {
 	overflow-x: hidden;
 }
 
+body {
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+}
+
+body > main {
+	flex: 1;
+}
+
 .media-links a {
 	border-color: #2d5d54;
 	fill: #2d5d54;
@@ -40,6 +50,7 @@ html {
 #intro,
 #recent-projects,
 #about,
+#experience,
 #contact,
 #technologies {
 	scroll-margin-top: var(--nav-height, 5.5rem);

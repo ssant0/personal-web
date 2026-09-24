@@ -1,20 +1,18 @@
 ---
-import {Image} from "astro:assets";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
 	title: string;
 	description: string;
-	image: any;
-	link: string;
+	image: ImageMetadata;
 	technologies?: string[];
+	status?: string;
 }
 
-const {title, description, image, link, technologies = []} = Astro.props;
+const { title, description, image, technologies = [], status } = Astro.props;
 
-const cleanTitle = title
-	.replaceAll(" ", "-")
-	.replaceAll(".", "-")
-	.toLowerCase();
+const cleanTitle = title.replaceAll(" ", "-").replaceAll(".", "-").toLowerCase();
 const id = "card-" + cleanTitle;
 ---
 
@@ -25,7 +23,16 @@ const id = "card-" + cleanTitle;
   max-[850px]:w-[620px]
   max-[660px]:w-[calc(100%-60px)]"
 >
-	<div class="img-wrapper relative shrink-0 w-[45%] max-[850px]:w-full max-[850px]:h-[220px] overflow-hidden">
+	<div
+		class="img-wrapper relative shrink-0 w-[45%] max-[850px]:w-full max-[850px]:h-[220px] overflow-hidden"
+	>
+		{
+			status && (
+				<span class="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm text-[#2d5d54] text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
+					{status}
+				</span>
+			)
+		}
 		<Image
 			src={image}
 			alt={`Imagen del proyecto: ${title}`}
@@ -33,31 +40,43 @@ const id = "card-" + cleanTitle;
 			class="card-img absolute inset-0 w-full h-full object-cover"
 		/>
 	</div>
-	<div
-		class="px-6 py-8 flex flex-col justify-center w-full max-[660px]:px-4 max-[660px]:py-6"
-	>
+	<div class="px-6 py-8 flex flex-col justify-center w-full max-[660px]:px-4 max-[660px]:py-6">
 		<h3 class="text-2xl font-medium m-0 text-start max-[660px]:text-xl">
 			{title}
 		</h3>
 		<p class="text-lg mt-2 text-gray-600 max-[660px]:text-base max-[550px]:text-sm">
 			{description}
 		</p>
-		{technologies.length > 0 && (
-			<div class="flex flex-wrap gap-1.5 mt-4">
-				{technologies.slice(0, 4).map((tech) => (
-					<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2 py-0.5 rounded-full font-medium">{tech}</span>
-				))}
-			</div>
-		)}
+		{
+			technologies.length > 0 && (
+				<div class="flex flex-wrap gap-1.5 mt-4">
+					{technologies.slice(0, 4).map((tech) => (
+						<span class="bg-[#2d5d54]/8 text-[#2d5d54] text-xs px-2 py-0.5 rounded-full font-medium">
+							{tech}
+						</span>
+					))}
+				</div>
+			)
+		}
 		<a
 			href={`/projects/${cleanTitle}`}
 			target="_self"
 			class="mt-6 w-fit text-base max-[850px]:text-lg max-[660px]:mt-4 max-[550px]:text-base font-normal rounded-xl bg-[#2d5d54] hover:bg-[#3e8b7d] transition-colors text-white px-6 py-2 flex items-center gap-2"
 		>
 			Ver proyecto
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-				<path fill-rule="evenodd"
-				      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="16"
+				height="16"
+				fill="currentColor"
+				viewBox="0 0 16 16"
+				aria-hidden="true"
+				focusable="false"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+				></path>
 			</svg>
 		</a>
 	</div>
@@ -76,7 +95,9 @@ const id = "card-" + cleanTitle;
 	/* El transform de hover se habilita solo tras la animación de entrada
 	 (clase .card-ready añadida por GSAP) para no pelear con el tween. */
 	.card-project.card-ready {
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
 	}
 
 	.card-project.card-ready:hover {
@@ -84,7 +105,9 @@ const id = "card-" + cleanTitle;
 	}
 
 	.card-img {
-		transition: filter 0.4s ease, transform 0.4s ease;
+		transition:
+			filter 0.4s ease,
+			transform 0.4s ease;
 		filter: grayscale(25%) contrast(95%);
 	}
 

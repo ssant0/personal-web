@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.manuelsamaniego.com.mx/sitemap-index.xml

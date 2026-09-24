@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { socialLinks } from "../data/socialLinks";
 import Footer from "../views/shared/Footer.astro";
 
 interface Props {
@@ -7,72 +8,119 @@ interface Props {
 	metaTitle: string;
 	description: string;
 	keywords: string;
+	ogImage?: string;
 }
 
-const {
-	title,
-	metaTitle,
-	description,
-	keywords
-} = Astro.props;
+const { title, metaTitle, description, keywords, ogImage = "/og-image.png" } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+const personSchema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Manuel Samaniego",
+	jobTitle: "Ingeniero Full Stack (Java / Spring Boot)",
+	url: Astro.site?.href,
+	email: "mailto:contacto@manuelsamaniego.com.mx",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Los Mochis",
+		addressRegion: "Sinaloa",
+		addressCountry: "MX",
+	},
+	sameAs: [socialLinks.linkedin, socialLinks.github],
+	knowsAbout: [
+		"Java",
+		"Spring Boot",
+		"PostgreSQL",
+		"Angular",
+		"TypeScript",
+		"Docker",
+		"Linux",
+		"REST APIs",
+	],
+};
 ---
 
 <!doctype html>
 <html lang="es">
-<head>
-	<!-- Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-G40F72XVS0"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
+	<head>
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-G40F72XVS0"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
 
-		function gtag() {
-			dataLayer.push(arguments);
-		}
+			function gtag() {
+				dataLayer.push(arguments);
+			}
 
-		gtag('js', new Date());
-		gtag('config', 'G-G40F72XVS0');
-	</script>
-	<meta charset="UTF-8"/>
-	<script is:inline>document.documentElement.classList.add("js");</script>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-	<meta name="generator" content={Astro.generator}/>
-	<title>{title}</title>
-	<meta name="title" content={metaTitle}/>
-	<meta name="description" content={description}/>
-	<meta name="keywords" content={keywords}/>
-	<link rel="stylesheet" href="/css/fonts.css"/>
-	<link rel="canonical" href={canonicalURL}>
-</head>
-<body class="rubik">
-<a href="#main" class="skip-link">Saltar al contenido</a>
-<slot/>
-<Footer/>
-<script>
-	import gsap from "gsap";
-	import {ScrollTrigger} from "gsap/ScrollTrigger";
+			gtag("js", new Date());
+			gtag("config", "G-G40F72XVS0");
+		</script>
+		<meta charset="UTF-8" />
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="title" content={metaTitle} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content="Manuel Samaniego" />
 
-	// Desactiva la restauración de scroll del navegador al volver atrás
-	history.scrollRestoration = "manual";
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Manuel Samaniego" />
+		<meta property="og:locale" content="es_MX" />
+		<meta property="og:title" content={metaTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:image" content={ogImageURL.href} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={metaTitle} />
 
-	// prefers-reduced-motion: fast-forward todas las animaciones GSAP (y sus
-	// delays) a su estado final. Como este script corre en la misma fase que
-	// los demás módulos (antes del primer rAF), el usuario no percibe
-	// movimiento y el contenido oculto por FOUC queda visible al instante.
-	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-		gsap.globalTimeline.timeScale(500);
-	}
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={metaTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL.href} />
 
-	// ScrollTrigger.refresh() después de que las fuentes carguen: Google Fonts
-	// puede desplazar el layout y desfasar las posiciones de los triggers.
-	if (document.fonts?.ready) {
-		document.fonts.ready.then(() => ScrollTrigger.refresh());
-	}
-	window.addEventListener("load", () => ScrollTrigger.refresh());
-</script>
-</body>
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+		<link rel="stylesheet" href="/css/fonts.css" />
+		<link rel="canonical" href={canonicalURL} />
+	</head>
+	<body class="rubik">
+		<a href="#main" class="skip-link">Saltar al contenido</a>
+		<slot />
+		<Footer />
+		<script>
+			import gsap from "gsap";
+			import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+			// Desactiva la restauración de scroll del navegador al volver atrás
+			history.scrollRestoration = "manual";
+
+			// prefers-reduced-motion: fast-forward todas las animaciones GSAP (y sus
+			// delays) a su estado final. Como este script corre en la misma fase que
+			// los demás módulos (antes del primer rAF), el usuario no percibe
+			// movimiento y el contenido oculto por FOUC queda visible al instante.
+			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				gsap.globalTimeline.timeScale(500);
+			}
+
+			// ScrollTrigger.refresh() después de que las fuentes carguen: Google Fonts
+			// puede desplazar el layout y desfasar las posiciones de los triggers.
+			if (document.fonts?.ready) {
+				document.fonts.ready.then(() => ScrollTrigger.refresh());
+			}
+			window.addEventListener("load", () => ScrollTrigger.refresh());
+		</script>
+	</body>
 </html>
 
 <style>

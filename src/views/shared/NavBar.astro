@@ -1,5 +1,11 @@
 ---
-
+const links = [
+	{ id: "intro", label: "Inicio" },
+	{ id: "recent-projects", label: "Proyectos" },
+	{ id: "about", label: "Sobre mí" },
+	{ id: "experience", label: "Experiencia" },
+	{ id: "contact", label: "Contacto" },
+];
 ---
 
 <nav
@@ -9,80 +15,191 @@
 	py-3 px-16
 	max-[660px]:px-0 max-[660px]:py-0"
 >
+	<!-- Desktop nav -->
 	<div
 		id="links-container"
-		class="bg-white/80 backdrop-blur-md border border-gray-200/60
+		class="hidden min-[660px]:flex bg-white/80 backdrop-blur-md border border-gray-200/60
     py-3 px-5
-    rounded-2xl shadow-md flex items-center justify-center text-xl gap-8
-    max-[660px]:text-lg max-[660px]:gap-3 max-[382px]:text-base
-    transition-colors duration-300
-    max-[660px]:w-full max-[660px]:justify-center max-[660px]:rounded-none max-[480px]:text-base"
+    rounded-2xl shadow-md items-center justify-center text-lg min-[900px]:text-xl gap-4 min-[900px]:gap-8
+    transition-colors duration-300"
+	>
+		{
+			links.map((link) => (
+				<a
+					href={`#${link.id}`}
+					data-target={link.id}
+					data-nav-link
+					aria-current={link.id === "intro" ? "location" : undefined}
+					class:list={[
+						"lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent whitespace-nowrap",
+						link.id === "intro" && "active",
+					]}
+				>
+					{link.label}
+				</a>
+			))
+		}
+	</div>
+
+	<!-- Mobile bar -->
+	<div
+		id="mobile-bar"
+		class="flex min-[660px]:hidden w-full items-center justify-between px-4 py-3
+    bg-white/80 backdrop-blur-md border-b border-gray-200/60"
 	>
 		<a
 			href="#intro"
 			data-target="intro"
-			aria-current="location"
-			class="lb active cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
-      max-[382px]:px-2 max-[382px]:py-0.5
-      w-34 max-[660px]:w-32 max-[480px]:w-28"
-		>Inicio</a>
+			class="codec-pro font-medium text-lg text-[#2d5d54] tracking-tight">Manuel Samaniego</a
+		>
 
-		<a
-			href="#recent-projects"
-			data-target="recent-projects"
-			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
-      max-[382px]:px-2 max-[382px]:py-0.5
-      w-34 max-[660px]:w-32 max-[480px]:w-28"
-		>Proyectos</a>
+		<button
+			id="menu-toggle"
+			type="button"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			aria-label="Abrir menú"
+			class="menu-toggle w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-xl
+      border-2 border-transparent hover:border-[#2d5d54]/30 transition-colors duration-200"
+		>
+			<span class="menu-bar" aria-hidden="true"></span>
+			<span class="menu-bar" aria-hidden="true"></span>
+			<span class="menu-bar" aria-hidden="true"></span>
+		</button>
+	</div>
 
-		<!-- Oculto en mobile — sección accesible por scroll -->
-		<a
-			href="#about"
-			data-target="about"
-			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
-      max-[382px]:px-2 max-[382px]:py-0.5
-      w-34 max-[660px]:hidden"
-		>Sobre mí</a>
-
-		<a
-			href="#contact"
-			data-target="contact"
-			class="lb cursor-pointer px-4 py-1 rounded-xl hover:text-[#2d5d54] transition-colors duration-300 border-2 border-solid border-transparent
-      max-[382px]:px-2 max-[382px]:py-0.5
-      w-34 max-[660px]:w-32 max-[480px]:w-28 text-center"
-		>Contacto</a>
+	<!-- Mobile dropdown -->
+	<div
+		id="mobile-menu"
+		hidden
+		class="min-[660px]:hidden absolute top-full left-0 right-0 px-3 pt-2"
+	>
+		<div
+			class="bg-white/95 backdrop-blur-md border border-gray-200/60 rounded-2xl shadow-lg p-2 flex flex-col"
+		>
+			{
+				links.map((link) => (
+					<a
+						href={`#${link.id}`}
+						data-target={link.id}
+						data-nav-link
+						aria-current={link.id === "intro" ? "location" : undefined}
+						class:list={[
+							"nav-link-mobile rounded-xl px-4 py-3 text-lg text-gray-700 hover:text-[#2d5d54] hover:bg-[#2d5d54]/5 transition-colors",
+							link.id === "intro" && "active",
+						]}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</div>
 	</div>
 </nav>
+
+<noscript>
+	<style>
+		#mobile-bar {
+			display: none !important;
+		}
+		#links-container {
+			display: flex !important;
+			flex-wrap: wrap;
+		}
+	</style>
+</noscript>
 
 <script>
 	import gsap from "gsap";
 
 	const nav = document.getElementById("navbar");
-	const links = document.querySelectorAll<HTMLAnchorElement>(".lb");
+	const menu = document.getElementById("mobile-menu");
+	const toggle = document.getElementById("menu-toggle");
+	const desktopLinks = document.querySelectorAll<HTMLAnchorElement>("#links-container .lb");
+	const activeLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
 
 	// Expone la altura real del nav para que scroll-margin-top la respete
 	const setNavHeight = () => {
 		if (nav) document.documentElement.style.setProperty("--nav-height", `${nav.offsetHeight}px`);
 	};
 	setNavHeight();
-	window.addEventListener("resize", setNavHeight);
 
-	// Animación de entrada
-	links.forEach((link) => gsap.set(link, { scale: 0 }));
+	// Animación de entrada (solo desktop; el menú móvil se controla con toggle)
+	desktopLinks.forEach((link) => gsap.set(link, { scale: 0 }));
 	gsap.to("#links-container", {
-		autoAlpha: 1, duration: 0.5, ease: "power2.out", onComplete: () => {
-			links.forEach((link, i) => {
-				gsap.to(link, { autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.15 });
+		autoAlpha: 1,
+		duration: 0.5,
+		ease: "power2.out",
+		onComplete: () => {
+			desktopLinks.forEach((link, i) => {
+				gsap.to(link, { autoAlpha: 1, scale: 1, ease: "back.out", duration: 0.4, delay: i * 0.12 });
 			});
 		},
 	});
 
-	// Mapa sección → enlace usando data-target
-	const getSection = (id: string): HTMLElement | null =>
-		document.getElementById(id);
+	// --- Menú móvil desplegable ---
+	const isMenuOpen = () => toggle?.getAttribute("aria-expanded") === "true";
+
+	const openMenu = () => {
+		if (!menu || !toggle) return;
+		gsap.killTweensOf(menu);
+		menu.hidden = false;
+		toggle.setAttribute("aria-expanded", "true");
+		toggle.setAttribute("aria-label", "Cerrar menú");
+		gsap.fromTo(
+			menu,
+			{ autoAlpha: 0, y: -8 },
+			{ autoAlpha: 1, y: 0, duration: 0.25, ease: "power2.out" }
+		);
+		menu.querySelector<HTMLElement>("a")?.focus();
+	};
+
+	const closeMenu = (returnFocus = false) => {
+		if (!menu || !toggle || menu.hidden) return;
+		gsap.killTweensOf(menu);
+		toggle.setAttribute("aria-expanded", "false");
+		toggle.setAttribute("aria-label", "Abrir menú");
+		gsap.to(menu, {
+			autoAlpha: 0,
+			y: -8,
+			duration: 0.2,
+			ease: "power2.in",
+			onComplete: () => {
+				menu.hidden = true;
+			},
+		});
+		if (returnFocus) toggle.focus();
+	};
+
+	toggle?.addEventListener("click", () => {
+		if (isMenuOpen()) closeMenu();
+		else openMenu();
+	});
+
+	// Cerrar con Escape y devolver el foco al botón
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && isMenuOpen()) closeMenu(true);
+	});
+
+	// Cerrar al hacer clic fuera
+	document.addEventListener("click", (e) => {
+		if (!isMenuOpen()) return;
+		const target = e.target as Node;
+		if (menu?.contains(target) || toggle?.contains(target)) return;
+		closeMenu();
+	});
+
+	// Cerrar si se pasa a desktop
+	window.addEventListener("resize", () => {
+		setNavHeight();
+		if (window.innerWidth >= 660 && isMenuOpen()) closeMenu();
+	});
+
+	// --- Navegación, scroll suave y estado activo ---
+	const getSection = (id: string): HTMLElement | null => document.getElementById(id);
 
 	const setActive = (link: HTMLAnchorElement) => {
-		links.forEach((l) => {
+		activeLinks.forEach((l) => {
 			l.classList.remove("active");
 			l.removeAttribute("aria-current");
 		});
@@ -90,29 +207,35 @@
 		link.setAttribute("aria-current", "location");
 	};
 
-	const sectionLinkMap = new Map<Element, HTMLAnchorElement>();
-
-	links.forEach((link) => {
-		const targetId = link.dataset.target!;
+	// Mapa sección → enlaces (desktop + móvil)
+	const sectionLinksMap = new Map<Element, HTMLAnchorElement[]>();
+	activeLinks.forEach((link) => {
+		const targetId = link.dataset.target;
+		if (!targetId) return;
 		const section = getSection(targetId);
-		if (section) sectionLinkMap.set(section, link);
+		if (!section) return;
+		const arr = sectionLinksMap.get(section) ?? [];
+		arr.push(link);
+		sectionLinksMap.set(section, arr);
 	});
 
 	// Observer — marca el link activo según la sección visible
-	const observerOptions = { root: null, rootMargin: "0px", threshold: 0.25 };
-
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach((entry) => {
-			if (!entry.isIntersecting) return;
-			const mappedLink = sectionLinkMap.get(entry.target);
-			// Si el link está oculto en mobile (display:none), no cambia el estado activo
-			if (!mappedLink || mappedLink.offsetParent === null) return;
-			setActive(mappedLink);
-		});
-	}, observerOptions);
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				const links = sectionLinksMap.get(entry.target);
+				if (!links) return;
+				// Prefiere el enlace visible (desktop, o móvil si el menú está abierto)
+				const visible = links.find((l) => l.offsetParent !== null);
+				if (visible) setActive(visible);
+			});
+		},
+		{ root: null, rootMargin: "0px", threshold: 0.25 }
+	);
 
 	const startObserver = () => {
-		sectionLinkMap.forEach((_, section) => observer.observe(section));
+		sectionLinksMap.forEach((_, section) => observer.observe(section));
 	};
 	startObserver();
 
@@ -125,7 +248,7 @@
 	};
 
 	// Scroll suave al hacer click — respeta scroll-margin-top de cada sección
-	links.forEach((link) => {
+	document.querySelectorAll<HTMLAnchorElement>("a[data-target]").forEach((link) => {
 		link.addEventListener("click", (e) => {
 			// Respeta clic con modificadores (abrir en pestaña nueva, etc.)
 			if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -136,7 +259,9 @@
 
 			e.preventDefault();
 
-			setActive(link);
+			const visible = (sectionLinksMap.get(section) ?? []).find((l) => l.offsetParent !== null);
+			setActive(visible ?? link);
+			closeMenu();
 			observer.disconnect();
 
 			if (targetId === "intro") {
@@ -153,7 +278,7 @@
 
 <style>
 	:global(.js) #links-container,
-	:global(.js) .lb {
+	:global(.js) #links-container .lb {
 		visibility: hidden;
 	}
 
@@ -167,5 +292,33 @@
 		border-color: #2d5d54;
 		color: #2d5d54;
 		background-color: rgba(45, 93, 84, 0.08);
+	}
+
+	.nav-link-mobile.active {
+		color: #2d5d54;
+		background-color: rgba(45, 93, 84, 0.08);
+	}
+
+	.menu-bar {
+		display: block;
+		width: 22px;
+		height: 2px;
+		border-radius: 2px;
+		background-color: #2d5d54;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
 	}
 </style>

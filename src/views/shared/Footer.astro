@@ -1,5 +1,5 @@
 ---
-import {socialLinks} from "../../data/socialLinks";
+import { socialLinks } from "../../data/socialLinks";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -7,9 +7,7 @@ const currentYear = new Date().getFullYear();
 <footer class="bg-[#202020] text-gray-400 border-t border-gray-800">
 	<h2 class="sr-only">Pie de página</h2>
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-		<div
-			class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left"
-		>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
 			<div>
 				<h3 class="text-lg text-white mb-2">Manuel Samaniego</h3>
 				<p class="text-sm">
@@ -17,34 +15,50 @@ const currentYear = new Date().getFullYear();
 				</p>
 				<p class="text-xs mt-4">
 					Hecho con ❤️ usando <a
-					href="https://astro.build/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-white underline decoration-dotted underline-offset-2"
-				>Astro</a
-				> & <a
-					href="https://tailwindcss.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="hover:text-white underline decoration-dotted underline-offset-2"
-				>Tailwind CSS</a
-				>.
+						href="https://astro.build/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="hover:text-white underline decoration-dotted underline-offset-2">Astro</a
+					> & <a
+						href="https://tailwindcss.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="hover:text-white underline decoration-dotted underline-offset-2">Tailwind CSS</a
+					>.
 				</p>
 			</div>
 			<div>
 				<h3 class="text-lg text-white mb-2">Navegación</h3>
 				<ul class="flex flex-col gap-1 text-sm">
-					<li><a href="/#intro" data-scroll="intro" class="hover:text-white transition-colors">Inicio</a></li>
-					<li><a href="/#recent-projects" data-scroll="recent-projects" class="hover:text-white transition-colors">Proyectos</a>
+					<li>
+						<a href="/#intro" data-scroll="intro" class="hover:text-white transition-colors"
+							>Inicio</a
+						>
 					</li>
-					<li><a href="/#contact" data-scroll="contact" class="hover:text-white transition-colors">Contacto</a></li>
+					<li>
+						<a
+							href="/#recent-projects"
+							data-scroll="recent-projects"
+							class="hover:text-white transition-colors">Proyectos</a
+						>
+					</li>
+					<li>
+						<a
+							href="/#experience"
+							data-scroll="experience"
+							class="hover:text-white transition-colors">Experiencia</a
+						>
+					</li>
+					<li>
+						<a href="/#contact" data-scroll="contact" class="hover:text-white transition-colors"
+							>Contacto</a
+						>
+					</li>
 				</ul>
 			</div>
 			<div>
 				<h3 class="text-lg text-white mb-2">Conecta conmigo</h3>
-				<div
-					class="flex justify-center md:justify-start items-center gap-5 mt-4"
-				>
+				<div class="flex justify-center md:justify-start items-center gap-5 mt-4">
 					<a
 						href={socialLinks.github}
 						target="_blank"
@@ -105,16 +119,23 @@ const currentYear = new Date().getFullYear();
 							></path>
 						</svg>
 					</a>
-				<a
-					href=""
-					data-email-href
-					rel="noopener noreferrer"
-					aria-label="Email"
-					class="hover:text-white transition-colors"
-				>
-						<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+					<a
+						href={`mailto:${socialLinks.email}`}
+						rel="noopener noreferrer"
+						aria-label="Email"
+						class="hover:text-white transition-colors"
+					>
+						<svg
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-6 h-6"
+							aria-hidden="true"
+							focusable="false"
+							viewBox="0 0 24 24"
+						>
 							<path
-								d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z"/>
+								d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z"
+							></path>
 						</svg>
 					</a>
 				</div>
@@ -133,9 +154,6 @@ const currentYear = new Date().getFullYear();
 </footer>
 
 <script>
-	import { hydrateEmail } from "../../utils/email";
-	hydrateEmail();
-
 	document.querySelectorAll<HTMLAnchorElement>("[data-scroll]").forEach((link) => {
 		link.addEventListener("click", (e) => {
 			// Respeta clic con modificadores (abrir en pestaña nueva, etc.)
@@ -143,13 +161,13 @@ const currentYear = new Date().getFullYear();
 
 			if (link.dataset.scroll === "intro") {
 				e.preventDefault();
-				window.scrollTo({top: 0, behavior: "smooth"});
+				window.scrollTo({ top: 0, behavior: "smooth" });
 				return;
 			}
 			const target = document.getElementById(link.dataset.scroll!);
 			if (!target) return;
 			e.preventDefault();
-			target.scrollIntoView({behavior: "smooth", block: "start"});
+			target.scrollIntoView({ behavior: "smooth", block: "start" });
 		});
 	});
 </script>
