@@ -18,10 +18,10 @@
 - ✅ **5.** Copy de Contacto reposicionado ("— HABLEMOS", orientado a recruiting)
 - ☐ **6.** CV en PDF + botón "Descargar CV" _(requiere el PDF del usuario)_
 - ✅ **7.** Link de agencia eliminado del Linktree
-- ☐ **8.** Open Graph / Twitter Cards
+- ✅ **8.** Open Graph + Twitter Cards + `robots.txt` + JSON-LD `Person` (imagen OG generada con `scripts/generate-og-image.mjs`)
 - 🟡 **9.** Repos de flagships (Sorteum añadido con repo privado; Odoo/Moodle sin repo)
 - ✅ **10.** Proyectos reordenados por impacto técnico
-- 🟡 **11.** Instagram fuera del hero (sigue presente en la sección Contacto)
+- ✅ **11.** Instagram fuera del hero y de Contacto (sigue en el footer y en el Linktree)
 - ☐ **12.** Evidencia de contenedores/CI/tests _(acción personal — ver `PLAN-REACTIVACION.md`)_
 - ☐ **13.** Lockfile único (`package-lock.json` + `pnpm-lock.yaml`)
 - ✅ **14.** Slug del README corregido (`personal-web`)
@@ -47,7 +47,7 @@
 - ☐ ESLint + Prettier + `astro check` + CI
 - ☐ Comprimir imágenes fuente (`klyn.png`, `cybercafe10m.png`)
 - ☐ `will-change: transform` permanente
-- ☐ `og:*` / `twitter:*` / `robots.txt` / JSON-LD `Person`
+- ✅ `og:*` / `twitter:*` / `robots.txt` / JSON-LD `Person`
 - ☐ `alt` descriptivos y `keywords[]` de proyectos recortados
 - ☐ Mover `AUDITORIA.md` a `/docs` o presentarlo como QA report
 
