@@ -23,7 +23,7 @@
 - ✅ **10.** Proyectos reordenados por impacto técnico
 - ✅ **11.** Instagram fuera del hero y de Contacto (sigue en el footer y en el Linktree)
 - ☐ **12.** Evidencia de contenedores/CI/tests _(acción personal — ver `PLAN-REACTIVACION.md`)_
-- ☐ **13.** Lockfile único (`package-lock.json` + `pnpm-lock.yaml`)
+- ✅ **13.** Lockfile único: pnpm (`package-lock.json` eliminado, scripts y README migrados a pnpm)
 - ✅ **14.** Slug del README corregido (`personal-web`)
 
 ### 🟡 Mejoras de contenido
@@ -43,9 +43,9 @@
 - ☐ Email con fallback sin JS (`href=""` + hidratación por JS)
 - ☐ `ScrollTrigger.registerPlugin` duplicado → helper
 - ☐ `<style is:global>` duplicado → `global.css`
-- ☐ Metadata de `package.json` (name/version/description/author)
-- ☐ ESLint + Prettier + `astro check` + CI
-- ☐ Comprimir imágenes fuente (`klyn.png`, `cybercafe10m.png`)
+- ✅ Metadata de `package.json` (`name`, `version`, `description`, `author`)
+- ✅ `astro check` + Prettier (`.prettierrc`, `pnpm check` / `pnpm format`); ESLint y CI quedaron fuera por decisión
+- ➖ Comprimir imágenes fuente — se decidió no tocar los binarios (Astro ya optimiza en build)
 - ☐ `will-change: transform` permanente
 - ✅ `og:*` / `twitter:*` / `robots.txt` / JSON-LD `Person`
 - ☐ `alt` descriptivos y `keywords[]` de proyectos recortados

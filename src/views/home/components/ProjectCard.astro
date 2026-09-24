@@ -6,12 +6,11 @@ interface Props {
 	title: string;
 	description: string;
 	image: ImageMetadata;
-	link: string;
 	technologies?: string[];
 	status?: string;
 }
 
-const {title, description, image, link, technologies = [], status} = Astro.props;
+const {title, description, image, technologies = [], status} = Astro.props;
 
 const cleanTitle = title
 	.replaceAll(" ", "-")

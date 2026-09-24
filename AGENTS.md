@@ -5,9 +5,11 @@ Astro 6 + Tailwind CSS 4 static site. Personal portfolio positioning Manuel Sama
 ## Commands
 
 ```bash
-npm run dev      # Dev server (accessible on network via --host)
-npm run build    # Production build → dist/
-npm run preview  # Preview production build locally
+pnpm dev          # Dev server (accessible on network via --host)
+pnpm build        # Production build → dist/
+pnpm preview      # Preview production build locally
+pnpm check        # astro check — types over .astro files
+pnpm format       # Prettier write
 ```
 
 ## Architecture
@@ -115,4 +117,4 @@ Google Analytics 4 (`G-G40F72XVS0`) is injected as the first element in `<head>`
   - The mobile toggle manages `aria-expanded`/`aria-controls`, closes on `Escape` (returning focus to the button), on outside click and on resize to desktop; the icon morphs via `.menu-toggle[aria-expanded="true"] .menu-bar`.
   - A `<noscript>` block reveals `#links-container` and hides `#mobile-bar` so navigation works without JS.
   - New homepage section anchors must be added to the `scroll-margin-top: var(--nav-height)` selector in `global.css`; `--nav-height` is set by the NavBar script.
-- **Repo docs (root)**: `AUDITORIA.md` (employability audit: blockers, content, code findings) and `PLAN-REACTIVACION.md` (study/refresh plan). `README.md` still carries the old SME/freelance positioning and is pending a rewrite.
+- **Repo docs (root)**: `README.md` (overview + setup, ES), `AUDITORIA.md` (employability audit + execution tracker) and `PLAN-REACTIVACION.md` (study/refresh plan).

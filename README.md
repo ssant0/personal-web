@@ -50,7 +50,7 @@ Incluye animaciones de scroll con GSAP, páginas de detalle de proyecto autogene
 | Herramienta | Versión |
 |---|---|
 | Node.js | `>= 20.x` |
-| npm | `>= 10.x` |
+| pnpm | `>= 9.x` |
 
 ---
 
@@ -66,13 +66,13 @@ Incluye animaciones de scroll con GSAP, páginas de detalle de proyecto autogene
 2. **Instala dependencias:**
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Levanta el servidor de desarrollo:**
 
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 Abre [http://localhost:4321](http://localhost:4321) en el navegador.
@@ -85,9 +85,12 @@ Abre [http://localhost:4321](http://localhost:4321) en el navegador.
 
 | Comando | Descripción |
 |---|---|
-| `npm run dev` | Servidor de desarrollo (accesible en la red) |
-| `npm run build` | Build de producción → `dist/` |
-| `npm run preview` | Previsualiza el build de producción |
+| `pnpm dev` | Servidor de desarrollo (accesible en la red) |
+| `pnpm build` | Build de producción → `dist/` |
+| `pnpm preview` | Previsualiza el build de producción |
+| `pnpm check` | Verificación de tipos sobre los archivos `.astro` (`astro check`) |
+| `pnpm format` | Formatea el proyecto con Prettier |
+| `pnpm format:check` | Comprueba el formato sin escribir cambios |
 
 ---
 
