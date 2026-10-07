@@ -5,7 +5,7 @@ import { socialLinks } from "../../../data/socialLinks";
 <section
 	id="intro"
 	aria-labelledby="intro-title"
-	class="flex flex-col items-center justify-center mt-22
+	class="flex flex-col items-center justify-center mt-40
   w-[860px] max-[1080px]:w-[700px]
   max-[800px]:w-[580px]
   max-[800px]:mt-40
@@ -15,17 +15,6 @@ import { socialLinks } from "../../../data/socialLinks";
   max-[440px]:w-[350px]
   max-[382px]:w-[300px]"
 >
-	<!-- Avatar -->
-	<div
-		class="avatar-ring w-24 h-24 rounded-full bg-[#2d5d54] flex items-center justify-center mb-6 ring-4 ring-[#2d5d54]/20 max-[660px]:w-20 max-[660px]:h-20 max-[382px]:w-16 max-[382px]:h-16"
-	>
-		<span
-			aria-hidden="true"
-			class="text-white text-3xl font-semibold codec-pro tracking-tight max-[382px]:text-2xl"
-			>MS</span
-		>
-	</div>
-
 	<!-- Badges -->
 	<div id="intro-badges" class="flex flex-wrap items-center justify-center gap-2 mb-3">
 		<div
@@ -214,7 +203,6 @@ import { socialLinks } from "../../../data/socialLinks";
 </section>
 
 <style>
-	:global(.js) .avatar-ring,
 	:global(.js) #intro-badges,
 	:global(.js) #intro h1,
 	:global(.js) #intro-lead,
@@ -236,12 +224,6 @@ import { socialLinks } from "../../../data/socialLinks";
 	.cta-secondary:hover {
 		transform: scale(1.04);
 	}
-
-	.avatar-ring {
-		box-shadow:
-			0 0 0 6px rgba(45, 93, 84, 0.12),
-			0 4px 20px rgba(45, 93, 84, 0.2);
-	}
 </style>
 
 <script>
@@ -249,7 +231,6 @@ import { socialLinks } from "../../../data/socialLinks";
 
 	const baseTo = { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out" };
 
-	gsap.set(".avatar-ring", { scale: 0 });
 	gsap.set("#intro-badges", { scale: 0 });
 	gsap.set("#intro h1", { scale: 0, y: 20 });
 	gsap.set("#intro-lead", { scale: 0, y: 15 });
@@ -257,7 +238,6 @@ import { socialLinks } from "../../../data/socialLinks";
 	gsap.set(".media-links", { scale: 0 });
 	gsap.set("#intro-ctas", { scale: 0, y: 15 });
 
-	gsap.to(".avatar-ring", baseTo);
 	gsap.to("#intro-badges", { ...baseTo, delay: 0.2 });
 	gsap.to("#intro h1", { ...baseTo, y: 0, delay: 0.4 });
 	gsap.to("#intro-lead", { ...baseTo, y: 0, delay: 0.6 });
