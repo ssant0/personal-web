@@ -17,7 +17,7 @@
 - ✅ **3.** README reescrito en español con posicionamiento de ingeniería
 - ✅ **4.** Bio de `/links` reposicionada
 - ✅ **5.** Copy de Contacto reposicionado ("— HABLEMOS", orientado a recruiting)
-- ☐ **6.** CV en PDF + botón "Descargar CV" _(requiere el PDF del usuario)_
+- ✅ **6.** CV en PDF (`public/cv.pdf`) + botón "Descargar CV" en hero y navbar
 - ✅ **7.** Link de agencia eliminado del Linktree
 - ✅ **8.** Open Graph + Twitter Cards + `robots.txt` + JSON-LD `Person` (imagen OG generada con `scripts/generate-og-image.mjs`)
 - 🟡 **9.** Repos de flagships (Sorteum añadido con repo privado; Odoo/Moodle sin repo)
@@ -34,7 +34,7 @@
 - ✅ **3.** Seniority en "Sobre mí" sin antigüedad
 - ✅ **4a.** Sección Experiencia
 - ✅ **4b.** Skills agrupadas por dominio con subtítulos (Backend · Bases de datos · Infra & DevOps · Frontend · Fundamentos web · Tooling; +Docker y Linux)
-- ☐ **4c.** CTA "Descargar CV" persistente
+- ✅ **4c.** CTA "Descargar CV" en hero y navbar (y en el menú móvil)
 - ☐ **5.** Docker/tests/CI real _(acción personal)_
 - ➖ Ejemplos de copy reescrito (referencia, no ejecutable)
 

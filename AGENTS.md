@@ -31,6 +31,7 @@ public/
   css/           # fonts.css
   robots.txt     # sitemap reference
   og-image.png   # Open Graph image (generated)
+  cv.pdf         # CV descargable (hero + navbar)
 scripts/
   generate-og-image.mjs  # regenerates public/og-image.png via sharp
 ```
