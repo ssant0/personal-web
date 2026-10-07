@@ -6,6 +6,9 @@ dist/
 # agent skills (installed locally)
 .agents/
 
+# personal CV source (kept out of the repo)
+CV-CONTENIDO.md
+
 # dependencies
 node_modules/
 
